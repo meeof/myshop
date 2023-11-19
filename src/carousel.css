@@ -1,0 +1,47 @@
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    position: relative;
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+.carousel > .imageCard {
+    position: absolute;
+    z-index: 999;
+    opacity: .8;
+}
+.carousel > .imageCard:first-child {
+    left: 0;
+}
+.carousel > .imageCard:last-child {
+    right: 0;
+}
+.imgBlock {
+    height: inherit;
+    display: flex;
+    position: absolute;
+}
+.imgBlock > img {
+    height: inherit;
+}
+@keyframes leftAnimation {
+    0%   {left: -100%; }
+    100% { left: 0; }
+}
+.animBlock-left {
+    animation-name: leftAnimation;
+    animation-duration: .8s;
+    left: 0;
+}
+@keyframes rightAnimation {
+    0%   {left: -100%; }
+    100% { left: -200%; }
+}
+.animBlock-right {
+    animation-name: rightAnimation;
+    animation-duration: .8s;
+    left: -200%;
+}

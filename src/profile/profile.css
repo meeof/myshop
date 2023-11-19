@@ -1,0 +1,155 @@
+.installmentBlock {
+    display: flex;
+    flex-direction: column;
+}
+.installmentBlock > * {
+    margin-bottom: 5px;
+}
+.installmentBlock label{
+    cursor: pointer;
+}
+.inputContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    align-items: center;
+}
+.inputContainer > * {
+    box-sizing: border-box;
+}
+.fieldAndLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+.fieldAndLabel > input {
+    width: 100%;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+.sellDateContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.sellDateContainer > *:first-child {
+   margin-right: 15px;
+}
+.profileCard {
+    background-color: lightgray;
+    display: flex;
+    height: 105px;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.profilePhoto {
+    width: 85px;
+    height: 85px;
+    min-width: 85px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    overflow: hidden;
+}
+.profilePhoto > img {
+    width: inherit;
+    height: inherit;
+}
+.profileLabel {
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+.profileLabel > h3 {
+    font-size: 1.2rem;
+}
+.profileLabel > p {
+    margin-top: 5px;
+}
+.profileCard .imageCard {
+    border: solid black 1px;
+    margin-bottom: auto;
+}
+.profileLinks {
+    padding: 15px;
+}
+.profLink {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.profLink > a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+.profLink > img {
+    transform: rotate(90deg);
+}
+.profLink:hover {
+    background-color: lightgray;
+    border-radius: 3px;
+}
+.myShopBottom {
+    display: flex;
+    padding: 5px;
+}
+.myShopBottom > *:first-child {
+    margin-right: 15px;
+}
+.productCostContainer {
+    display: flex;
+}
+.productCostContainer > span {
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    align-self: center;
+}
+.productDescriptionField {
+    height: 100px;
+    resize: none;
+    width: 100%;
+}
+.formContainer input, .formContainer textarea {
+    box-sizing: border-box;
+}
+.formContainer > * {
+    margin-bottom: 5px;
+}
+.closeButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    vertical-align: center;
+    cursor: pointer;
+    border: solid black 1px;
+    border-radius: 2px;
+}
+.closeButton:hover {
+    background-color: orangered;
+}
+.addImageButton {
+    position: absolute;
+    z-index: 999;
+    cursor: pointer;
+}
+@media (min-width: 430px) {
+    .myShopBottom, .profileCard, .profileLinks, .createProdContainer {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

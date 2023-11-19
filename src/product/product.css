@@ -1,0 +1,76 @@
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.productDescription {
+    font-size: 1rem;
+}
+.productDescription > * {
+    margin-bottom: 0.4rem;
+}
+.productDescription h4 {
+    font-size: 1.2rem;
+}
+.prodCost {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 15px;
+}
+.productPointLabel {
+    opacity: .5;
+}
+.productButtons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 10px;
+}
+.productButtons > * {
+    width: 100%;
+}
+.productArrow {
+    cursor: pointer;
+    position: relative;
+}
+.ArrowStarContainer {
+    justify-self: flex-end;
+    width: min-content;
+    display: flex;
+}
+.productArrow:last-child {
+    margin-left: 5px;
+}
+.imgReviewComment {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    min-height: 100px;
+}
+.addComRevArea {
+    resize: none;
+    height: 100px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.addBasket-big {
+    position: relative;
+}
+.addBasket-big > * {
+    width: 100%;
+}
+@media (min-width: 430px) {
+    .productContainer {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (max-width: 430px) {
+
+}

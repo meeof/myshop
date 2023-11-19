@@ -1,38 +1,112 @@
-.App {
-  text-align: center;
+.contentContainer {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bottomButton {
+    min-width: min-content;
+    justify-self: flex-end;
+    margin: auto;
+    width: 100%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.shopInteractiveElement {
+    height: 2.1rem;
+    width: 100%;
+    font-size: 1.2rem;
+    overflow: hidden;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.shopBottomButton {
+    width: 210px;
 }
-
-.App-link {
-  color: #61dafb;
+.labelInput {
+    margin: 0;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.activeButton {
+    background-color: white;
+}
+input[type="text"], input[type="password"] {
+    box-sizing: border-box;
+}
+input[type="button"] {
+    cursor: pointer;
+}
+.shopLink {
+    text-decoration: none;
+    color: black;
+}
+.shopH1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    align-self: flex-start;
+}
+.cardPlace {
+    padding: 5px;
+}
+.headButtons {
+    display: flex;
+    justify-content: center;
+    border: solid lightgray 2px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+.headButton {
+    border: none;
+    flex-grow: 1;
+    cursor: pointer;
+    height: 2.1rem;
+    font-size: 1rem;
+}
+.activeHeadButton {
+    border-radius: 5px;
+    background-color: white;
+    border: none !important;
+}
+.headButton:first-child {
+    border-right: 1px solid lightgray;
+    border-radius: 5px;
+}
+.headButton:last-child {
+    border-left: 1px solid lightgray;
+    border-radius: 5px;
+}
+.headContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+@media (max-width: 430px) {
+    .cardPlace {
+        display: flex;
+        flex-direction: column;
+    }
+    .headButtons {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+@media (min-width: 430px) {
+    .cardPlace {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        max-width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .bottomButton {
+        width: 50%;
+    }
+    .headButtons {
+        width: 50%;
+        min-width: min-content;
+    }
+    .shopH1 {
+        align-self: center;
+    }
 }

@@ -1,0 +1,28 @@
+.findBasketCont {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.findBasketCont > img {
+    height: 28px;
+}
+.findIntoBasket {
+    width: min-content;
+}
+@media (min-width: 430px) {
+    .findBasketCont {
+        width: 50%;
+        min-width: min-content;
+    }
+    .findBasketCont > div {
+        width: 100%;
+    }
+}
+@media (max-width: 430px) {
+    .findBasketCont {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
