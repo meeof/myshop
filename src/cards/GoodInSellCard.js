@@ -1,9 +1,15 @@
 import imagePen from  '../images/pen.svg';
 import imageDelete from '../images/delete.svg';
+import {randomColor} from "../App";
+import {useMemo} from "react";
 export default function GoodInSellCard({handlerOutGood, goodId, goods, isSeller, handlerDeleteGoodInSell, handlerGo,
                                            handlerDeleteGoodInProfile, profile}) {
+    const bgColor = useMemo(
+        () => randomColor(0.08),
+        []
+    );
     let thisGood = goods[goodId];
-    return <div className={'cardContainer'}>
+    return <div className={'cardContainer'} style={{backgroundColor: bgColor}}>
         <div className="imgCardContainer" onClick={(e) => {
             handlerGo(e, 'productView');
             handlerOutGood(goodId);

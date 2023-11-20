@@ -4,7 +4,7 @@ import findImage from './images/find.svg'
 let FindInput = styled.input`
   outline: none;
   border: none;
-  border-bottom: solid lightgray 1px;
+  border-bottom: solid rgba(0, 0, 225, 0.5) 2px;
   margin: 5px;
   width: 100%;
 `;

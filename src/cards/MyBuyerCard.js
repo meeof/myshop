@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import imageChevron from '../images/chevron.svg';
-import {useState} from "react";
+import {useMemo, useState} from "react";
+import {randomColor} from "../App";
 
 let HeaderMyGoodCard = styled.div`
     display: flex;
   justify-content: flex-end;
 `;
 export default function MyBuyerCard({goods, goodsBuyers, name}) {
+    const bgColor = useMemo(
+        () => randomColor(0.08),
+        []
+    );
     let [showCard, setShowCard] = useState(true);
     let outBuyers = [];
     let counter = 0;
@@ -26,7 +31,7 @@ export default function MyBuyerCard({goods, goodsBuyers, name}) {
         )
         counter++;
     }
-    return <div className={'basketCardContainer'}>
+    return <div className={'basketCardContainer'} style={{backgroundColor: bgColor}}>
         <HeaderMyGoodCard>
             <h3 className="basketCardHeader">{name}</h3>
             <img src={imageChevron} className={showCard ? 'cardChevron' : 'cardChevron cardChevron-rotate'}

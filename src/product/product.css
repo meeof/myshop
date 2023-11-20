@@ -35,6 +35,19 @@
 .productArrow {
     cursor: pointer;
     position: relative;
+    background: linear-gradient(0.25turn, rgba(0, 225, 0, 0.1), rgba(0, 0, 225, 0.3));
+    border: rgba(0, 0, 225, 0.2) solid 1px;
+    outline: solid rgba(0, 0, 225, 0.2) 1px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.productArrow:hover {
+    animation-name: shopButtonAnim;
+    animation-duration: 100ms;
+    animation-timing-function: ease-in-out;
+    background: linear-gradient(0.25turn, rgba(0, 0, 225, 0.3), rgba(0, 225, 0, 0.1));
 }
 .ArrowStarContainer {
     justify-self: flex-end;

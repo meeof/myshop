@@ -3,10 +3,15 @@ import imageDelete from '../images/delete.svg';
 import starImage from "../images/star.svg";
 import noFavoritesImage from "../images/noFavorites.svg";
 import findImage from  "../images/findBlack.svg";
-import {useState} from "react";
+import {useMemo, useState} from "react";
+import {randomColor} from "../App";
 export default function SellCard({sell, goods, isSeller, id, handlerDeleteSell, handlerOutSell, handlerGo,
                                      handlerDeleteSellInProfile, profile, handlerAddSellToProfile, main, handlerToFavorites,
                                  handlerFromFavorites}) {
+    const bgColor = useMemo(
+        () => randomColor(0.08),
+        []
+    );
     let [addFav, setAddFav] = useState('');
     function clearPopUpActive() {
         setAddFav('');
@@ -72,7 +77,7 @@ export default function SellCard({sell, goods, isSeller, id, handlerDeleteSell, 
             </div>
         </>
     }
-    return <div className={'cardContainer'}>
+    return <div className={'cardContainer'} style={{backgroundColor: bgColor}}>
         <div className="goodLabels">
             <h4>{sell.name}</h4>
             <p>{sell.description}</p>

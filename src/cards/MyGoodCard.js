@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import imageChevron from '../images/chevron.svg';
-import {useState} from "react";
+import {useMemo, useState} from "react";
+import {randomColor} from "../App";
 
 let HeaderMyGoodCard = styled.div`
     display: flex;
   justify-content: flex-end;
 `;
 export default function MyGoodCard({date, good, number, sellers, goods}) {
+    const bgColor = useMemo(
+        () => randomColor(0.08),
+        []
+    );
     let [showCard, setShowCard] = useState(true);
     let outGoods = [];
     let counter = 0;
@@ -25,7 +30,7 @@ export default function MyGoodCard({date, good, number, sellers, goods}) {
         )
         counter++;
     }
-    return <div className={'basketCardContainer'}>
+    return <div className={'basketCardContainer'} style={{backgroundColor: bgColor}}>
         <HeaderMyGoodCard>
             <h3 className="basketCardHeader">{good}</h3>
             <div className={'basketCardHeader'}>{date}</div>

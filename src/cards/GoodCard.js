@@ -2,19 +2,23 @@ import basketImage from '../images/basket.svg';
 import starImage from '../images/star.svg';
 import noFavoritesImage from '../images/noFavorites.svg';
 import './cards.css';
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import '../App.css';
+import {randomColor} from '../App';
 
 export default function GoodCard({good, handlerGo, handlerOutGood, goodId, handlerToFavorites, handlerFromFavorites,
                                      handlerAddMyBuy, isSeller, handlerAddToSell, profile, handlerAddGoodToProfile}) {
+    const bgColor = useMemo(
+        () => randomColor(0.08),
+        []
+    );
     let [addFav, setAddFav] = useState('');
     let [addBasket, setAddBasket] = useState('');
     let [goodAmount, setGoodAmount] = useState('');
     function clearPopUpActive() {
         setAddFav('');
     }
-
-    return <div className={'cardContainer'}>
+    return <div className={'cardContainer'} style={{backgroundColor: bgColor}}>
         <div className="imgCardContainer" onClick={(e) => {
             handlerGo(e, 'productView');
             handlerOutGood(goodId);

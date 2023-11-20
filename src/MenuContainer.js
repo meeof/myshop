@@ -32,6 +32,7 @@ let Menu = styled.div`
   }
   .activeBarButton > .mainBarButton {
     border-color: #0000FF;
+    background-color: #B5CCE5;
   }
   .activeBarButton > .mainBarButtonLabel {
     color: #0000FF;

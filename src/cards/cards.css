@@ -60,7 +60,7 @@
     flex-grow: 1;
 }
 .imageCard {
-    background-color: lightgray;
+    background-color: #B5CCE5;
     width: 23px;
     height: 23px;
     display: flex;
@@ -85,7 +85,7 @@
     position: absolute;
     width: min-content;
     border: black solid 1px;
-    background-color: lightgray;
+    background-color: #B5CCE5;
     font-size: 0.8rem;
     border-radius: 2px;
     display: none;
@@ -154,9 +154,9 @@
     margin-top: 5px;
 }
 .profileSellButton {
+    background-color: #B5CCE5;
     display: flex;
     cursor: pointer;
-    background-color: lightgray;
     border-radius: 4px;
     margin-bottom: 5px;
 }

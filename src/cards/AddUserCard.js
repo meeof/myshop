@@ -1,5 +1,12 @@
+import {randomColor} from "../App";
+import {useMemo} from "react";
+
 export default function AddUserCard({name, description}) {
-    return <div className={'addUserCard basketCardContainer'}>
+    const bgColor = useMemo(
+        () => randomColor(0.08),
+        []
+    );
+    return <div className={'addUserCard basketCardContainer'} style={{backgroundColor: bgColor}}>
         <div>
             <h3 className="basketCardHeader">{name}</h3>
             <div className={'addUserText'}>{description}</div>
