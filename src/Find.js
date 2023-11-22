@@ -7,6 +7,7 @@ let FindInput = styled.input`
   border-bottom: solid rgba(0, 0, 225, 0.5) 2px;
   margin: 5px;
   width: 100%;
+  font-size: 1.2rem;
 `;
 let FindContainer = styled.div`
   display: flex;

@@ -18,6 +18,9 @@
     }
     @media (max-width: 430px) {
         border-bottom: solid lightgray 1px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 5px;
     }
 }
 .basketCardContainer {
@@ -31,6 +34,9 @@
     }
     @media (max-width: 430px) {
         border-bottom: solid lightgray 1px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 5px;
     }
 }
 .imgCardContainer {

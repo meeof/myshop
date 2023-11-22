@@ -21,6 +21,7 @@ import CreateSell from "./profile/CreateSell";
 import CreateGood from "./profile/CreateGood";
 import SellMain from "./sells/SellMain";
 import SellsInUser from "./sells/SellsInUser";
+import {Route, Routes, useNavigate} from "react-router-dom";
 
 
 export default function Shop() {
@@ -170,7 +171,6 @@ export default function Shop() {
             },
         },
     }
-
     let prevGoods = {
         good1 : {
             name: 'Товар-1',
@@ -360,9 +360,8 @@ export default function Shop() {
     let [sells, setSells] = useImmer(prevSells);
     let [userBase, setUserBase] = useImmer(prevUserBase);
     let [logged, setLogged] = useState(false);
-    let [page, setPage] = useState('login');
     let [activeButton, setActiveButton] = useState('catalog');
-    let outPage;
+    const navigate = useNavigate();
     let [emailChange, setEmailChange] = useState('');
     let [goods, setGoods] = useImmer(prevGoods);
     let [outGoodKey, setOutGoodKey] = useState('');
@@ -382,7 +381,7 @@ export default function Shop() {
         setUserBase((draft) => {
             draft[logged].myGoods.push(goodName);
         });
-        setPage('myShop');
+        navigate('myShop', { replace: false });
         setActiveButton('profile');
     }
     function handlerCreateSell(sellParams) {
@@ -396,7 +395,7 @@ export default function Shop() {
         setUserBase((draft) => {
             draft[logged].mySells.push(sellName);
         });
-        setPage('myShop');
+        navigate('myShop', { replace: false });
         setActiveButton('profile');
     }
     function handlerAddSellToProfile(id) {
@@ -479,7 +478,6 @@ export default function Shop() {
         }
     }
     function handlerToFavorites(id) {
-        let index = userBase[logged].favorites.indexOf(id);
         if (!userBase[logged].favorites.includes(id)) {
             setUserBase((draft) => {
                 draft[logged].favorites.push(id);
@@ -506,7 +504,7 @@ export default function Shop() {
         setUserBase((draft) => {
             draft[emailChange].password = password;
         });
-        setPage('login');
+        navigate('login', { replace: false });
     }
     function handlerRestore(email) {
         if (!userBase[email]) {
@@ -514,7 +512,7 @@ export default function Shop() {
         }
         else {
             setEmailChange(email);
-            setPage('newPassword');
+            navigate('newPassword', { replace: false });
         }
     }
     function handlerRegister(newUser) {
@@ -546,134 +544,88 @@ export default function Shop() {
                 }
             });
         }
-        setPage('login');
+        navigate('login', { replace: false })
     }
     function handlerGo (e, pageKey) {
         e.preventDefault();
-        setPage(pageKey);
+        navigate(`${pageKey}`, { replace: false })
     }
     function handlerActiveMenu (buttonKey) {
         setActiveButton(buttonKey);
     }
-    switch (page) {
-        case 'sellInUser' : {
-            outPage = <SellsInUser outUserKey={outUserKey} userBase={userBase} handlerGo={handlerGo} activeButton={activeButton}
-                                   handlerActiveMenu={handlerActiveMenu} sells={sells} goods={goods} handlerOutSell={handlerOutSell}
-                                   handlerOutGood={handlerOutGood} handlerToFavorites={handlerToFavorites}/>
-            break;
-        }
-        case 'viewSellMain' : {
-            outPage = <SellMain sells={sells} goods={goods} handlerOutGood={handlerOutGood} handlerToFavorites={handlerToFavorites}
-            handlerAddMyBuy={handlerAddMyBuy} handlerActiveMenu={handlerActiveMenu} activeButton={activeButton}
-                                outSellKey={outSellKey} handlerGo={handlerGo}/>
-            break
-        }
-        case 'createGood' : {
-            outPage = <CreateGood handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                                  handlerCreateGood={handlerCreateGood}/>
-            break;
-        }
-        case 'createSell' : {
-            outPage = <CreateSell handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                                  handlerCreateSell={handlerCreateSell}/>
-            break;
-        }
-        case 'history' : {
-            outPage = <History handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                userBase={userBase} goods={goods} sells={sells} logged={logged} handlerOutGood={handlerOutGood}
-            handlerToFavorites={handlerToFavorites} handlerAddMyBuy={handlerAddMyBuy}/>
-            break;
-        }
-        case 'goodsInSell' : {
-            outPage = <GoodsInSell handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                                   sells={sells} goods={goods} outSellKey={outSellKey} handlerAddToSell={handlerAddToSell}
-                                   handlerOutGood={handlerOutGood}/>
-            break;
-        }
-        case 'мyShopAdd' : {
-            outPage = <MyShopAdd addSellOut={addSellOut} handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-            userBase={userBase} logged={logged} goods={goods} handlerOutGood={handlerOutGood} handlerAddGoodToProfile={handlerAddGoodToProfile}
-            sells={sells} handlerDeleteSellInProfile={handlerDeleteSellInProfile} handlerOutSell={handlerOutSell}
-                                 handlerAddSellToProfile={handlerAddSellToProfile}/>
-            break;
-        }
-        case 'myShop' : {
-            outPage = <MyShop handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                              goods={goods} sells={sells} logged={logged} userBase={userBase} handlerDeleteSell={handlerDeleteSell}
-                              handlerOutSell={handlerOutSell} handlerOutGood={handlerOutGood}
-                              handlerDeleteSellInProfile={handlerDeleteSellInProfile} handlerDeleteGoodInProfile={handlerDeleteGoodInProfile}
-                              handlerOutAddSellOrAddGood={handlerOutAddSellOrAddGood}/>
-            break
-        }
-        case 'profile' : {
-            outPage = <Profile handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                               goods={goods} sells={sells} logged={logged} userBase={userBase}/>
-            break;
-        }
-        case 'viewSells' : {
-            outPage = <ViewSell handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                                sells={sells} goods={goods} outSellKey={outSellKey} handlerDeleteGoodInSell={handlerDeleteGoodInSell}
-                                handlerOutGood={handlerOutGood}/>
-            break;
-        }
-        case 'sells' : {
-            outPage = <Sells handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                             sells={sells} goods={goods} handlerDeleteSell={handlerDeleteSell} handlerOutSell={handlerOutSell}
-                             handlerOutGood={handlerOutGood}/>
-            break;
-        }
-        case 'addBuyer' : {
-            outPage = <AddBuyer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                                userBase={userBase}/>
-            break;
-        }
-        case 'addGood' : {
-            outPage = <AddGood handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                               goods={goods} handlerOutGood={handlerOutGood}/>
-            break;
-        }
-        case 'login' : {
-            outPage = <Login handlerGo={handlerGo} userBase={userBase} handlerEnterUser={handlerEnterUser}/>;
-            break;
-        }
-        case 'productView' : {
-            outPage = <ProductView handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-            outGoodKey={outGoodKey} goods={goods} handlerAddComRev={handlerAddComRev} handlerAddMyBuy={handlerAddMyBuy}
-            handlerToFavorites={handlerToFavorites}/>;
-            break;
-        }
-        case 'newPassword' : {
-            outPage = <NewPassword handlerNewPassword={handlerNewPassword}/>;
-            break;
-        }
-        case 'restorePassword' : {
-            outPage = <RestorePassword handlerRestore={handlerRestore}/>;
-            break;
-        }
-        case 'registerUser' : {
-            outPage = <RegisterUser handlerRegister={handlerRegister}/>;
-            break
-        }
-        case 'catalog' : {
-            outPage = <Main handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                            goods={goods} handlerOutGood={handlerOutGood} handlerToFavorites={handlerToFavorites}
-                            handlerAddMyBuy={handlerAddMyBuy} sells={sells} handlerOutSell={handlerOutSell}
-                            userBase={userBase} handlerOutUserKey={handlerOutUserKey}/>
-            break
-        }
-        case 'basket' : {
-            outPage = <Basket handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                        userBase={userBase} goods={goods} logged={logged}/>
-            break
-        }
-        case 'favorites' : {
-            outPage = <Favorites handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                                 userBase={userBase} logged={logged} goods={goods} handlerOutGood={handlerOutGood}
-                                 handlerFromFavorites={handlerFromFavorites} handlerAddMyBuy={handlerAddMyBuy} sells={sells}
-                                 handlerOutSell={handlerOutSell}/>
-        }
-    }
     return <>
-        {outPage}
+        <Routes>
+            <Route path={"favorites"} element=
+                {<Favorites handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                        userBase={userBase} logged={logged} goods={goods} handlerOutGood={handlerOutGood}
+                                                        handlerFromFavorites={handlerFromFavorites} handlerAddMyBuy={handlerAddMyBuy} sells={sells}
+                                                        handlerOutSell={handlerOutSell}/>} />
+            <Route path={"basket"} element=
+                {<Basket handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                  userBase={userBase} goods={goods} logged={logged}/>} />
+            <Route path={'catalog'} element=
+                {<Main handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                   goods={goods} handlerOutGood={handlerOutGood} handlerToFavorites={handlerToFavorites}
+                                                   handlerAddMyBuy={handlerAddMyBuy} sells={sells} handlerOutSell={handlerOutSell}
+                                                   userBase={userBase} handlerOutUserKey={handlerOutUserKey}/>}/>
+            <Route path={'registerUser'} element={<RegisterUser handlerRegister={handlerRegister}/>}/>
+            <Route path={'restorePassword'} element={<RestorePassword handlerRestore={handlerRestore}/>}/>
+            <Route path={'newPassword'} element={<NewPassword handlerNewPassword={handlerNewPassword}/>}/>
+            <Route path={'productView'} element=
+                {<ProductView handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                              outGoodKey={outGoodKey} goods={goods} handlerAddComRev={handlerAddComRev} handlerAddMyBuy={handlerAddMyBuy}
+                                                              handlerToFavorites={handlerToFavorites}/>}/>
+            <Route path={'login'} element={<Login handlerGo={handlerGo} userBase={userBase} handlerEnterUser={handlerEnterUser}/>}/>
+            <Route path={'addGood'} element=
+                {<AddGood handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                      goods={goods} handlerOutGood={handlerOutGood}/>}/>
+            <Route path={'addBuyer'} element=
+                {<AddBuyer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                        userBase={userBase}/>}/>
+            <Route path={'sells'} element=
+                {<Sells handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                  sells={sells} goods={goods} handlerDeleteSell={handlerDeleteSell} handlerOutSell={handlerOutSell}
+                                                  handlerOutGood={handlerOutGood}/>}/>
+            <Route path={'viewSells'} element=
+                {<ViewSell handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                         sells={sells} goods={goods} outSellKey={outSellKey} handlerDeleteGoodInSell={handlerDeleteGoodInSell}
+                                                         handlerOutGood={handlerOutGood}/>}/>
+            <Route path={'profile'} element=
+                {<Profile handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                      goods={goods} sells={sells} logged={logged} userBase={userBase}/>}/>
+            <Route path={'myShop'} element=
+                {<MyShop handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                    goods={goods} sells={sells} logged={logged} userBase={userBase} handlerDeleteSell={handlerDeleteSell}
+                                                    handlerOutSell={handlerOutSell} handlerOutGood={handlerOutGood}
+                                                    handlerDeleteSellInProfile={handlerDeleteSellInProfile} handlerDeleteGoodInProfile={handlerDeleteGoodInProfile}
+                                                    handlerOutAddSellOrAddGood={handlerOutAddSellOrAddGood}/>}/>
+            <Route path={'мyShopAdd'} element=
+                {<MyShopAdd addSellOut={addSellOut} handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                          userBase={userBase} logged={logged} goods={goods} handlerOutGood={handlerOutGood} handlerAddGoodToProfile={handlerAddGoodToProfile}
+                                                          sells={sells} handlerDeleteSellInProfile={handlerDeleteSellInProfile} handlerOutSell={handlerOutSell}
+                                                          handlerAddSellToProfile={handlerAddSellToProfile}/>}/>
+            <Route path={'goodsInSell'} element=
+                {<GoodsInSell handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                             sells={sells} goods={goods} outSellKey={outSellKey} handlerAddToSell={handlerAddToSell}
+                             handlerOutGood={handlerOutGood}/>}/>
+            <Route path={'history'} element=
+                {<History handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                      userBase={userBase} goods={goods} sells={sells} logged={logged} handlerOutGood={handlerOutGood}
+                                                      handlerToFavorites={handlerToFavorites} handlerAddMyBuy={handlerAddMyBuy}/>}/>
+            <Route path={'createSell'} element=
+                {<CreateSell handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                            handlerCreateSell={handlerCreateSell}/>}/>
+            <Route path={'createGood'} element=
+                {<CreateGood handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                                                            handlerCreateGood={handlerCreateGood}/>}/>
+            <Route path={'viewSellMain'} element=
+                {<SellMain sells={sells} goods={goods} handlerOutGood={handlerOutGood} handlerToFavorites={handlerToFavorites}
+                                                            handlerAddMyBuy={handlerAddMyBuy} handlerActiveMenu={handlerActiveMenu} activeButton={activeButton}
+                                                            outSellKey={outSellKey} handlerGo={handlerGo}/>}/>
+            <Route path={'sellInUser'} element=
+                {<SellsInUser outUserKey={outUserKey} userBase={userBase} handlerGo={handlerGo} activeButton={activeButton}
+                                                             handlerActiveMenu={handlerActiveMenu} sells={sells} goods={goods} handlerOutSell={handlerOutSell}
+                                                             handlerOutGood={handlerOutGood} handlerToFavorites={handlerToFavorites}/>}/>
+        </Routes>
     </>
 }

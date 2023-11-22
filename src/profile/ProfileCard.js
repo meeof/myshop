@@ -1,12 +1,18 @@
 import imagePen from "../images/pen.svg";
 import './profile.css';
+import {useMemo} from "react";
+import {randomColor} from "../App";
 
 export default function ProfileCard({phone, email, image, isShop, name, description}) {
+    const bgColor = useMemo(
+        () => randomColor(0.5),
+        []
+    );
     let shortName;
     if (!isShop) {
         shortName = email.match(/[a-zA-Z]+(?=@[a-zA-Z]+\.[a-zA-Z]+)/);
     }
-    return <div className="profileCard">
+    return <div className="profileCard" style={{backgroundColor: bgColor}}>
         <div className="profilePhoto">
             <img src={image}/>
         </div>

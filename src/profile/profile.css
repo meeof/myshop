@@ -94,7 +94,10 @@
     transform: rotate(90deg);
 }
 .profLink:hover {
-    background-color: lightgray;
+    animation-name: shopButtonAnim;
+    animation-duration: 100ms;
+    animation-timing-function: ease-in-out;
+    background: linear-gradient(0.25turn, rgba(0, 0, 225, 0.3), rgba(0, 225, 0, 0.1));
     border-radius: 3px;
 }
 .myShopBottom {

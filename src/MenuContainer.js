@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 let Container = styled.div`
   @media (max-width: 430px) {
-    padding-bottom: 50px;
+    padding-bottom: 70px;
   };
   @media (min-width: 430px) {
-    padding-left: 50px;
+    padding-left: 60px;
   }
 `;
 let Menu = styled.div`
@@ -21,11 +21,14 @@ let Menu = styled.div`
     align-items: center;
   }
   .mainBarButton {
-    width: 20px;
-    height: 20px;
-    border: solid black 2px;
+    width: 28px;
+    height: 28px;
+    border: solid #CC992E 3px;
     border-radius: 5px;
     cursor: pointer;
+  }
+  .mainBarButtonLabel {
+    color: #0000FF;
   }
   * {
     font-size: 0.7rem;
@@ -37,18 +40,24 @@ let Menu = styled.div`
   .activeBarButton > .mainBarButtonLabel {
     color: #0000FF;
   }
+  .mainBarButtonLabel {
+    margin-top: 5px;
+  }
   @media (max-width: 430px) {
     bottom: 0;
     width: 100%;
     border-top: solid black 1px;
     justify-content: space-evenly;
     height: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
   };
   @media (min-width: 430px) {
     left: 0;
     flex-direction: column;
+    padding-left: 10px;
     > * {
-      margin: 5px 0;
+      margin: 10px 0;
     }
 `;
 export default function MenuContainer({children, handlerGo, activeButton, handlerActiveMenu}) {
