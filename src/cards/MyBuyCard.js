@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import {randomColor} from "../App";
 import {useMemo} from "react";
 

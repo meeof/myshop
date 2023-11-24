@@ -17,8 +17,8 @@ export default function HeadBasket({viewBasketPage, handlerHeadBasket}) {
         </div>
         <div className="findBasketCont">
                 <Find/>
-                <img src={arrowsImage}/>
-                <img src={shiftImage}/>
+                <img alt={'#'} src={arrowsImage}/>
+                <img alt={'#'} src={shiftImage}/>
         </div>
     </div>
 }

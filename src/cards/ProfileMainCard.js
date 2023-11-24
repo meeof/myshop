@@ -1,18 +1,23 @@
 import imageLines from '../images/lines.svg'
 import {randomColor} from "../App";
 import {useMemo} from "react";
-export default function ProfileMainCard({name, description, userSells, sells, handlerOutSell, handlerGo, handlerOutUserKey}) {
+import {useNavigate} from "react-router-dom";
+export default function ProfileMainCard({name, description, userSells, sells, handlerOutSell, handlerOutUserKey}) {
+    const navigate = useNavigate();
     const bgColor = useMemo(
         () => randomColor(0.08),
         []
     );
     let buttons = [];
     for (let key of userSells) {
-        buttons.push(<div className="profileSellButton" key={key} onClick={(e) => {
+        if(!sells[key]) {
+            continue;
+        }
+        buttons.push(<div className="profileSellButton" key={key} onClick={() => {
             handlerOutSell(key);
-            handlerGo(e, 'viewSellMain');
+            navigate('../viewSellMain', { replace: false });
         }}>
-            <img src={imageLines}/>
+            <img alt={'#'} src={imageLines}/>
             <span>{sells[key].name}</span>
         </div>)
     }
@@ -23,11 +28,11 @@ export default function ProfileMainCard({name, description, userSells, sells, ha
         </div>
         <div className={'cardButtons'}>
             {buttons}
-            <div className="profileSellButton" onClick={(e) => {
+            <div className="profileSellButton" onClick={() => {
                 handlerOutUserKey(name);
-                handlerGo(e, 'sellInUser');
+                navigate('../sellInUser', { replace: false });
             }}>
-                <img src={imageLines}/>
+                <img alt={'#'} src={imageLines}/>
                 <span>Ещё...</span>
             </div>
         </div>

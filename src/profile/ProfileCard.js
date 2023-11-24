@@ -14,7 +14,7 @@ export default function ProfileCard({phone, email, image, isShop, name, descript
     }
     return <div className="profileCard" style={{backgroundColor: bgColor}}>
         <div className="profilePhoto">
-            <img src={image}/>
+            <img alt={'#'} src={image}/>
         </div>
         <div className="profileLabel">
             {!isShop ? <>
@@ -28,8 +28,8 @@ export default function ProfileCard({phone, email, image, isShop, name, descript
 
         </div>
         <div className='cardButtons'>
-            <div className="imageCard" onClick={(e)=> {}}>
-                <img src={imagePen}/>
+            <div className="imageCard" onClick={()=> {}}>
+                <img alt={'#'} src={imagePen}/>
             </div>
         </div>
     </div>

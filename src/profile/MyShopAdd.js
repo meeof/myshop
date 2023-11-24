@@ -1,19 +1,20 @@
 import MenuContainer from "../MenuContainer";
 import Find from "../Find";
-import GoodInSellCard from "../cards/GoodInSellCard";
 import GoodCard from "../cards/GoodCard";
 import SellCard from "../cards/SellCard";
+import {useNavigate} from "react-router-dom";
 
-export default function MyShopAdd({handlerGo, activeButton, handlerActiveMenu, addSellOut, userBase, logged, goods,
+export default function MyShopAdd({activeButton, handlerActiveMenu, addSellOut, userBase, logged, goods,
                                       handlerOutGood, handlerAddGoodToProfile, sells, handlerDeleteSellInProfile,
                                       handlerOutSell, handlerAddSellToProfile}) {
+    handlerActiveMenu('profile');
+    const navigate = useNavigate();
     let goodsContent = [];
     let goodsInProfile = userBase[logged].myGoods;
     for (let key in goods) {
         if (!goodsInProfile.includes(key)) {
             goodsContent.push(<GoodCard key={key} goodId={key} goods={goods} handlerOutGood={handlerOutGood} isSeller={true}
-                                        handlerGo={handlerGo} good={goods[key]} handlerAddGoodToProfile={handlerAddGoodToProfile}
-                                        profile={true}/>)
+                                        good={goods[key]} handlerAddGoodToProfile={handlerAddGoodToProfile} profile={true}/>)
         }
     }
     let sellsContent = [];
@@ -21,13 +22,13 @@ export default function MyShopAdd({handlerGo, activeButton, handlerActiveMenu, a
     for (let key in sells) {
         if (!sellsInProfile.includes(key)) {
             sellsContent.push(<SellCard key={key} sell={sells[key]} goods={goods} id={key} handlerDeleteSellInProfile={handlerDeleteSellInProfile}
-                                        handlerOutSell={handlerOutSell} handlerGo={handlerGo} handlerOutGood={handlerOutGood}
+                                        handlerOutSell={handlerOutSell} handlerOutGood={handlerOutGood}
                                         profile={true} handlerAddSellToProfile={handlerAddSellToProfile} isSeller={true}/>)
         }
     }
 
     return <>
-        <MenuContainer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+        <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
             <Find place={!addSellOut ? 'goods' : 'sells'}/>
             {!addSellOut ? <>
                 <div className={'contentContainer'}>
@@ -35,8 +36,8 @@ export default function MyShopAdd({handlerGo, activeButton, handlerActiveMenu, a
                         {goodsContent}
                     </div>
                     <input type={"button"} value={'Создать товар'} className={'shopInteractiveElement bottomButton'}
-                           onClick={(e) =>  {
-                               {handlerGo(e, 'createGood')}
+                           onClick={() =>  {
+                               navigate('../createGood', { replace: false });
                            }}/>
                 </div>
             </> : <>
@@ -45,8 +46,8 @@ export default function MyShopAdd({handlerGo, activeButton, handlerActiveMenu, a
                         {sellsContent}
                     </div>
                     <input type={"button"} value={'Создать продажу'} className={'shopInteractiveElement bottomButton'}
-                           onClick={(e) =>  {
-                               {handlerGo(e, 'createSell')}
+                           onClick={() =>  {
+                               navigate('../createSell', { replace: false });
                            }}/>
                 </div></>}
         </MenuContainer>

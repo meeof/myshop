@@ -2,19 +2,21 @@ import imagePen from  '../images/pen.svg';
 import imageDelete from '../images/delete.svg';
 import {randomColor} from "../App";
 import {useMemo} from "react";
-export default function GoodInSellCard({handlerOutGood, goodId, goods, isSeller, handlerDeleteGoodInSell, handlerGo,
+import {useNavigate} from "react-router-dom";
+export default function GoodInSellCard({handlerOutGood, goodId, goods, isSeller, handlerDeleteGoodInSell,
                                            handlerDeleteGoodInProfile, profile}) {
+    const navigate = useNavigate();
     const bgColor = useMemo(
         () => randomColor(0.08),
         []
     );
     let thisGood = goods[goodId];
     return <div className={'cardContainer'} style={{backgroundColor: bgColor}}>
-        <div className="imgCardContainer" onClick={(e) => {
-            handlerGo(e, 'productView');
+        <div className="imgCardContainer" onClick={() => {
+            navigate('../productView', { replace: false });
             handlerOutGood(goodId);
         }}>
-            <img src={thisGood.image}/>
+            <img alt={'#'} src={thisGood.image}/>
         </div>
         <div className="goodLabels">
             <h4>{thisGood.name}</h4>
@@ -23,15 +25,15 @@ export default function GoodInSellCard({handlerOutGood, goodId, goods, isSeller,
         </div>
         <div className='cardButtons'>
             {!isSeller ? <>
-                <div className="imageCard" onClick={(e)=> {
+                <div className="imageCard" onClick={()=> {
                     if (profile) {
-                        handlerGo(e, 'мyShopAdd');
+                        navigate('../мyShopAdd', { replace: false });
                     }
                     else {
-                        handlerGo(e, 'goodsInSell');
+                        navigate('../goodsInSell', { replace: false });
                     }
                 }}>
-                    <img src={imagePen}/>
+                    <img alt={'#'} src={imagePen}/>
                 </div>
                 <div className="imageCard" onClick={()=> {
                     if (!profile) {
@@ -41,9 +43,9 @@ export default function GoodInSellCard({handlerOutGood, goodId, goods, isSeller,
                         handlerDeleteGoodInProfile(goodId);
                     }
                 }}>
-                    <img src={imageDelete}/>
+                    <img alt={'#'} src={imageDelete}/>
                 </div>
-            </> : <div className="imageCard" onClick={(e) => {
+            </> : <div className="imageCard" onClick={() => {
 
             }}>+</div>}
         </div>

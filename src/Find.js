@@ -32,7 +32,7 @@ export default function Find({place}) {
         placeholder = 'Поиск товара';
     }
     return <FindContainer>
-        <img src={findImage}/>
+        <img alt={'#'} src={findImage}/>
         <FindInput placeholder={placeholder}/>
     </FindContainer>
 }

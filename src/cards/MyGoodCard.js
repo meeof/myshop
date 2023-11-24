@@ -7,7 +7,7 @@ let HeaderMyGoodCard = styled.div`
     display: flex;
   justify-content: flex-end;
 `;
-export default function MyGoodCard({date, good, number, sellers, goods}) {
+export default function MyGoodCard({date, good, number, sellers}) {
     const bgColor = useMemo(
         () => randomColor(0.08),
         []
@@ -35,7 +35,7 @@ export default function MyGoodCard({date, good, number, sellers, goods}) {
             <h3 className="basketCardHeader">{good}</h3>
             <div className={'basketCardHeader'}>{date}</div>
             <div className={'basketCardHeader'}>{number}</div>
-            <img src={imageChevron} className={showCard ? 'cardChevron' : 'cardChevron cardChevron-rotate'}
+            <img alt={'#'} src={imageChevron} className={showCard ? 'cardChevron' : 'cardChevron cardChevron-rotate'}
                  onClick={() => setShowCard(!showCard)}/>
         </HeaderMyGoodCard>
         {showCard ? <>{outGoods}

@@ -2,17 +2,20 @@ import MenuContainer from "../MenuContainer";
 import {useState} from "react";
 import Carousel from "../Carousel";
 import imageCamera from '../images/cameraBig.svg'
+import {useNavigate} from "react-router-dom";
 
-export default function CreateGood({handlerGo, activeButton, handlerActiveMenu, handlerCreateGood}) {
+export default function CreateGood({activeButton, handlerActiveMenu, handlerCreateGood}) {
+    const navigate = useNavigate();
+    handlerActiveMenu('catalog');
     let [name, setName] = useState('');
     let [cost, setCost] = useState('');
     let [preCost, setPreCost] = useState('');
     let [delivery, setDelivery] = useState('');
     let [description, setDescription] = useState('');
-    return <MenuContainer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+    return <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
         <div className={'createProdContainer'}>
             <Carousel imagesUrlArr={[]} mainImage={'#'}>
-                <img className={'addImageButton'} src={imageCamera}/>
+                <img alt={'#'} className={'addImageButton'} src={imageCamera}/>
                 <div className="closeButton">x</div>
             </Carousel>
         </div>
@@ -41,6 +44,7 @@ export default function CreateGood({handlerGo, activeButton, handlerActiveMenu, 
                     delivery,
                     description,
                 });
+                navigate('../myShop', { replace: false });
             }}/>
         </div>
     </MenuContainer>

@@ -37,16 +37,16 @@ export default function Carousel({children, imagesUrlArr, mainImage}) {
             carouselRef.current.style.width = imgWidth - 1 + 'px';
         }
     }, []);
-    let imgBlockOut = <img src={"#"}/>;
+    let imgBlockOut = <img alt={'#'} src={"#"}/>;
     if (useUrlsArr.length > 0) {
         imgBlockOut = <div className={`imgBlock ${(animation === 'left') ? 'animBlock-left': ''} 
             ${(animation === 'right') ? 'animBlock-right': ''}`}>
-            <img src={useUrlsArr[prevImageIndex]}/>
-            <img src={useUrlsArr[showImageIndex]} ref={imgRef}/>
-            <img src={useUrlsArr[nextImageIndex]}/>
+            <img alt={'#'} src={useUrlsArr[prevImageIndex]}/>
+            <img alt={'#'} src={useUrlsArr[showImageIndex]} ref={imgRef}/>
+            <img alt={'#'} src={useUrlsArr[nextImageIndex]}/>
         </div>
     }
-    let carouselHeightForStyle = '200px';
+    let carouselHeightForStyle;
     if (docWidth < 410) {
         carouselHeightForStyle = docHeight/3 + 'px';
     }
@@ -55,7 +55,7 @@ export default function Carousel({children, imagesUrlArr, mainImage}) {
     }
     return <div className="carousel" ref={carouselRef} style={{height: carouselHeightForStyle}}>
         <div className="imageCard" style={{transform: 'rotate(270deg)'}}
-             onClick={(e) => {
+             onClick={() => {
                  setAnimation('left');
                  setTimeout(()=> {
                      if (activeImageIndex === 0) {
@@ -63,16 +63,16 @@ export default function Carousel({children, imagesUrlArr, mainImage}) {
                      }
                      else {
                          setActiveImageIndex(activeImageIndex - 1);
-                     };
+                     }
                      setAnimation('');
                  }, 820);
              }}>
-            <img src={imageChevron}/>
+            <img alt={'#'} src={imageChevron}/>
         </div>
         {imgBlockOut}
         <>{children}</>
         <div className="imageCard"  style={{transform: 'rotate(90deg)'}}
-             onClick={(e) => {
+             onClick={() => {
                  setAnimation('right');
                  setTimeout(()=> {
                      if (activeImageIndex === useUrlsArr.length - 1) {
@@ -84,7 +84,7 @@ export default function Carousel({children, imagesUrlArr, mainImage}) {
                      setAnimation('');
                  }, 820)
              }}>
-            <img src={imageChevron}/>
+            <img alt={'#'} src={imageChevron}/>
         </div>
     </div>
 }

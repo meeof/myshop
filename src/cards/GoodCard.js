@@ -5,9 +5,11 @@ import './cards.css';
 import {useMemo, useState} from "react";
 import '../App.css';
 import {randomColor} from '../App';
+import {useNavigate} from "react-router-dom";
 
-export default function GoodCard({good, handlerGo, handlerOutGood, goodId, handlerToFavorites, handlerFromFavorites,
+export default function GoodCard({good, handlerOutGood, goodId, handlerToFavorites, handlerFromFavorites,
                                      handlerAddMyBuy, isSeller, handlerAddToSell, profile, handlerAddGoodToProfile}) {
+    const navigate = useNavigate();
     const bgColor = useMemo(
         () => randomColor(0.08),
         []
@@ -19,11 +21,11 @@ export default function GoodCard({good, handlerGo, handlerOutGood, goodId, handl
         setAddFav('');
     }
     return <div className={'cardContainer'} style={{backgroundColor: bgColor}}>
-        <div className="imgCardContainer" onClick={(e) => {
-            handlerGo(e, 'productView');
+        <div className="imgCardContainer" onClick={() => {
             handlerOutGood(goodId);
+            navigate('../productView', { replace: false });
         }}>
-            <img src={good.image}/>
+            <img alt={'#'} src={good.image}/>
         </div>
         <div className="goodLabels">
             <h4>{good.name}</h4>
@@ -33,11 +35,11 @@ export default function GoodCard({good, handlerGo, handlerOutGood, goodId, handl
         <div className='cardButtons'>
             {!isSeller ? <>
                 <div className="imageCard" onClick={()=> setAddBasket('popUpBasket-active')}>
-                <img src={basketImage}/>
+                <img alt={'#'} src={basketImage}/>
                 <div className={`popUp ${addBasket}`}>
                     <input type={"number"} placeholder={'Количество'} value={goodAmount}
                            onChange={(e) => setGoodAmount(e.target.value)}/>
-                    <img src={basketImage} onClick={(e) => {
+                    <img alt={'#'} src={basketImage} onClick={(e) => {
                         e.stopPropagation();
                         handlerAddMyBuy(goodId, goodAmount);
                         setAddBasket('');
@@ -49,16 +51,16 @@ export default function GoodCard({good, handlerGo, handlerOutGood, goodId, handl
                         if (handlerToFavorites) {
                             handlerToFavorites(goodId);
                             setAddFav('popUp-active');
-                            let timeoutPopUp = window.setTimeout(clearPopUpActive, 1000);
+                            window.setTimeout(clearPopUpActive, 1000);
                         }
                         else {
                             handlerFromFavorites(goodId);
                         }
                     }}>
                     {handlerToFavorites ? <>
-                        <img src={starImage}/>
+                        <img alt={'#'} src={starImage}/>
                         <div className={`popUp ${addFav}`}>Добавлено</div>
-                    </> : <img src={noFavoritesImage}/>}
+                    </> : <img alt={'#'} src={noFavoritesImage}/>}
                 </div>
             </> : <>
             <div className="imageCard" onClick={()=> {

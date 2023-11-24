@@ -1,21 +1,21 @@
 import {useState} from "react";
 import MenuContainer from "../MenuContainer";
-import HeadBasket from "../basket/HeadBasket";
 import GoodCard from "../cards/GoodCard";
 import HeadHistory from "./HeadHistory";
 
-export default function History({handlerGo, activeButton, handlerActiveMenu, userBase, goods, sells, logged, handlerOutGood,
+export default function History({activeButton, handlerActiveMenu, userBase, goods, logged, handlerOutGood,
                                     handlerToFavorites, handlerAddMyBuy}) {
+    handlerActiveMenu('profile');
     let [viewHistoryPage, setViewHistoryPage] = useState('purchased');
     let outPage;
     let purchased = [];
     let sales = [];
     for (let key of userBase[logged].historyBuys) {
-        purchased.push(<GoodCard key={key} good={goods[key]} handlerGo={handlerGo} handlerOutGood={handlerOutGood}
+        purchased.push(<GoodCard key={key} good={goods[key]} handlerOutGood={handlerOutGood}
                                  goodId={key} handlerToFavorites={handlerToFavorites} handlerAddMyBuy={handlerAddMyBuy}/>);
     }
     for (let key of userBase[logged].historySells) {
-        sales.push(<GoodCard key={key} good={goods[key]} handlerGo={handlerGo} handlerOutGood={handlerOutGood}
+        sales.push(<GoodCard key={key} good={goods[key]} handlerOutGood={handlerOutGood}
                                  goodId={key} handlerToFavorites={handlerToFavorites} handlerAddMyBuy={handlerAddMyBuy}/>);
     }
     switch (viewHistoryPage) {
@@ -32,7 +32,7 @@ export default function History({handlerGo, activeButton, handlerActiveMenu, use
         setViewHistoryPage(pageKey);
     }
     return <>
-        <MenuContainer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+        <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
             <HeadHistory viewHistoryPage={viewHistoryPage} handlerHeadHistory={handlerHeadHistory}/>
             <div className={'contentContainer'}>
                 <div className={'cardPlace'}>

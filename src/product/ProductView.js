@@ -7,8 +7,9 @@ import basketImage from "../images/basket.svg";
 import starImage from "../images/star.svg";
 import Carousel from "../Carousel";
 
-export default function ProductView({handlerGo, activeButton, handlerActiveMenu, outGoodKey, goods, handlerAddComRev,
+export default function ProductView({activeButton, handlerActiveMenu, outGoodKey, goods, handlerAddComRev,
                                     handlerAddMyBuy, handlerToFavorites}) {
+    handlerActiveMenu('catalog');
     let [comRev, setComRev] = useState('');
     let [addBasket, setAddBasket] = useState(false);
     let [goodAmount, setGoodAmount] = useState('');
@@ -24,7 +25,7 @@ export default function ProductView({handlerGo, activeButton, handlerActiveMenu,
             setComRev(status);
         }
     }
-    return <MenuContainer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+    return <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
         <div className="productContainer">
             <Carousel imagesUrlArr={goods[outGoodKey].images} mainImage={goods[outGoodKey].image}></Carousel>
             <div className="productDescription">
@@ -43,7 +44,7 @@ export default function ProductView({handlerGo, activeButton, handlerActiveMenu,
                     <div className={"addProductToBasket shopInteractiveElement"}>
                         <input type={"number"} placeholder={'Количество'} value={goodAmount}
                                onChange={(e) => setGoodAmount(e.target.value)}/>
-                        <img src={basketImage} onClick={() => {
+                        <img alt={'#'} src={basketImage} onClick={() => {
                             handlerAddMyBuy(outGoodKey, goodAmount);
                             setAddBasket(false);
                         }}/>
@@ -53,13 +54,13 @@ export default function ProductView({handlerGo, activeButton, handlerActiveMenu,
                         () => {
                             handlerToFavorites(outGoodKey);
                             setAddFav('popUp-active');
-                            let timeoutPopUp = window.setTimeout(clearPopUpActive, 1000);
+                            window.setTimeout(clearPopUpActive, 1000);
                         }}>
-                        <img src={starImage}/>
+                        <img alt={'#'} src={starImage}/>
                         <div className={`popUp ${addFav}`}>Добавлено</div>
                     </button>
                     <button className={"productArrow"}>
-                        <img src={imageArrow}/>
+                        <img alt={'#'} src={imageArrow}/>
                     </button>
                 </div>
                 <input type="button" value="Отзывы" className="shopInteractiveElement"

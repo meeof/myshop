@@ -2,7 +2,7 @@ import './basket.css';
 import '../App.css';
 import MyGoodCard from "../cards/MyGoodCard";
 
-export default function MyGoods({userBase, logged, goods, handlerGo}) {
+export default function MyGoods({userBase, logged, goods}) {
     let outCards = [];
     let myBuysObj = userBase[logged].basketGoods;
     for (let key in myBuysObj) {
@@ -14,6 +14,6 @@ export default function MyGoods({userBase, logged, goods, handlerGo}) {
             {outCards}
         </div>
        <input type={"button"} value={'Добавить товар'} className={'shopInteractiveElement bottomButton'}
-              onClick={(e) =>  {}}/>
+              onClick={() =>  {}}/>
     </div>
 }

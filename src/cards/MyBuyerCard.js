@@ -34,7 +34,7 @@ export default function MyBuyerCard({goods, goodsBuyers, name}) {
     return <div className={'basketCardContainer'} style={{backgroundColor: bgColor}}>
         <HeaderMyGoodCard>
             <h3 className="basketCardHeader">{name}</h3>
-            <img src={imageChevron} className={showCard ? 'cardChevron' : 'cardChevron cardChevron-rotate'}
+            <img alt={'#'} src={imageChevron} className={showCard ? 'cardChevron' : 'cardChevron cardChevron-rotate'}
                  onClick={() => setShowCard(!showCard)}/>
         </HeaderMyGoodCard>
         {showCard ? <>{outBuyers}

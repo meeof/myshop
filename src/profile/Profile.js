@@ -1,25 +1,27 @@
 import MenuContainer from "../MenuContainer";
 import './profile.css';
-import imagePen from "../images/pen.svg";
 import imageChevron from '../images/chevron.svg'
 import ProfileCard from "./ProfileCard";
+import {useNavigate} from "react-router-dom";
 
-export default function Profile({handlerGo, handlerActiveMenu, activeButton, sells, goods, logged, userBase}) {
+export default function Profile({handlerActiveMenu, activeButton, logged, userBase}) {
+    handlerActiveMenu('profile');
+    const navigate = useNavigate();
     return <>
-        <MenuContainer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+        <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
             <ProfileCard email={logged} phone={userBase[logged].phone} image={userBase[logged].profileImage} isShop={false}/>
             <div className="profileLinks">
-                <div className="profLink" onClick={(e) => {handlerGo(e, 'myShop')}}>
+                <div className="profLink" onClick={() => {navigate('../myShop', { replace: false })}}>
                     <a href="#" onClick={(e) => {e.preventDefault()}}>Мой магазин</a>
-                    <img src={imageChevron}/>
+                    <img alt={'#'} src={imageChevron}/>
                 </div>
-                <div className="profLink" onClick={(e) => {handlerGo(e, 'history')}}>
+                <div className="profLink" onClick={() => {navigate('../history', { replace: false })}}>
                     <a href="#" onClick={(e) => {e.preventDefault()}}>История покупок</a>
-                    <img src={imageChevron}/>
+                    <img alt={'#'} src={imageChevron}/>
                 </div>
                 <div className="profLink">
                     <a href="#" onClick={(e) => {e.preventDefault()}}>Настройки</a>
-                    <img src={imageChevron}/>
+                    <img alt={'#'} src={imageChevron}/>
                 </div>
             </div>
         </MenuContainer>

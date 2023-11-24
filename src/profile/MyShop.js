@@ -2,40 +2,41 @@ import MenuContainer from "../MenuContainer";
 import ProfileCard from "./ProfileCard";
 import SellCard from "../cards/SellCard";
 import GoodInSellCard from "../cards/GoodInSellCard";
+import {useNavigate} from "react-router-dom";
 
-export default function MyShop({handlerGo, handlerActiveMenu, activeButton, sells, goods, logged, userBase, handlerOutSell,
+export default function MyShop({handlerActiveMenu, activeButton, sells, goods, logged, userBase, handlerOutSell,
                                    handlerOutGood, handlerDeleteGoodInProfile, handlerDeleteSellInProfile,
                                    handlerOutAddSellOrAddGood}) {
+    handlerActiveMenu('profile');
+    const navigate = useNavigate();
     let cards = [];
     for (let key of userBase[logged].myGoods) {
         if (goods[key]) {
             cards.push(<GoodInSellCard key={key} goodId={key} goods={goods} handlerOutGood={handlerOutGood}
-                                       handlerDeleteGoodInProfile={handlerDeleteGoodInProfile} handlerGo={handlerGo}
-                                       profile={true}/>)
+                                       handlerDeleteGoodInProfile={handlerDeleteGoodInProfile} profile={true}/>)
         }
     }
     for (let key of userBase[logged].mySells) {
         if (sells[key]) {
             cards.push(<SellCard key={key} sell={sells[key]} goods={goods} id={key} handlerDeleteSellInProfile={handlerDeleteSellInProfile}
-                                 handlerOutSell={handlerOutSell} handlerGo={handlerGo} handlerOutGood={handlerOutGood}
-                                 profile={true}/>)
+                                 handlerOutSell={handlerOutSell} handlerOutGood={handlerOutGood} profile={true}/>)
         }
     }
     return <>
-        <MenuContainer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+        <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
             <ProfileCard name={userBase[logged].shopName} description={userBase[logged].shopDescription}
                          image={userBase[logged].profileImage} isShop={true}/>
             <div className={'cardPlace'}>
                 {cards}
             </div>
             <div className={'myShopBottom'}>
-                <input type={"button"} className={'shopInteractiveElement'} value={'Товары'} onClick={(e) => {
+                <input type={"button"} className={'shopInteractiveElement'} value={'Товары'} onClick={() => {
                     handlerOutAddSellOrAddGood(false);
-                    handlerGo(e, 'мyShopAdd')
+                    navigate('../мyShopAdd', { replace: false });
                 }}/>
-                <input type={"button"} className={'shopInteractiveElement'} value={'Продажи'} onClick={(e) => {
+                <input type={"button"} className={'shopInteractiveElement'} value={'Продажи'} onClick={() => {
                     handlerOutAddSellOrAddGood(true);
-                    handlerGo(e, 'мyShopAdd')
+                    navigate('../мyShopAdd', { replace: false });
                 }}/>
             </div>
         </MenuContainer>

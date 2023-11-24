@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import './restorePassword.css'
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 let docHeight = document.documentElement.scrollHeight - 20;
 let Container = styled.div`
@@ -12,6 +13,7 @@ let Container = styled.div`
 }
 `;
 export default function RestorePassword({handlerRestore}) {
+    const navigate = useNavigate();
     let [email, setEmail] = useState('');
     return <Container>
         <form className="restoreRegisterForm">
@@ -25,7 +27,9 @@ export default function RestorePassword({handlerRestore}) {
             <input type="submit" value="Восстановить пароль"
                    className={'shopInteractiveElement shopBottomButton'} onClick={(e) => {
                        e.preventDefault();
-                       handlerRestore(email);
+                       if(handlerRestore(email)) {
+                           navigate('../newPassword', { replace: false });
+                       }
             }}/>
         </form>
     </Container>

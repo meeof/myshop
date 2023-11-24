@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import './login.css';
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 let docHeight = document.documentElement.scrollHeight - 20;
 let docWidth = document.documentElement.scrollWidth - 20;
 let Container = styled.div`
@@ -35,7 +36,8 @@ let ContainerImg = styled.div`
     max-height: 50%;
   }
 `;
-export default function Login({handlerGo, userBase, handlerEnterUser}) {
+export default function Login({userBase, handlerEnterUser}) {
+    const navigate = useNavigate();
     let [userEmailEnter, setUserEmailEnter] = useState('meeof@yandex.ru');
     let [userPasswordEnter, setUserPasswordEnter] = useState('1234');
     function handlerNameEnter(e) {
@@ -61,7 +63,7 @@ export default function Login({handlerGo, userBase, handlerEnterUser}) {
     }
     return <Container>
         <ContainerImg>
-            <img src={'https://img.freepik.com/free-photo/many-different-berries-in-the-form-of-a-frame-on-a-white-background_485709-54.jpg?w=740&t=st=1700299490~exp=1700300090~hmac=c87dc11608a60000589ab43e9a24703a1adcc2c55c4fb448f8cbd17f2d256dec'}/>
+            <img alt={'#'} src={'https://img.freepik.com/free-photo/many-different-berries-in-the-form-of-a-frame-on-a-white-background_485709-54.jpg?w=740&t=st=1700299490~exp=1700300090~hmac=c87dc11608a60000589ab43e9a24703a1adcc2c55c4fb448f8cbd17f2d256dec'}/>
         </ContainerImg>
         <form className="loginForm">
             <p>Email</p>
@@ -71,16 +73,17 @@ export default function Login({handlerGo, userBase, handlerEnterUser}) {
             <input type="password" className="shopInteractiveElement" value={userPasswordEnter}
                    onChange={(e)=> handlerPasswordEnter(e)}/>
             <input type="button" value="Войти" className="shopInteractiveElement buttonEnter"
-                   onClick={(e) => {
+                   onClick={() => {
                        if (handlerPass()) {
                            handlerEnterUser(userEmailEnter);
-                           handlerGo(e, 'catalog');
+                           navigate('../catalog', { replace: false });
                        }
             }}/>
             <input type="button" value="Регистрация" className="shopInteractiveElement buttonReg"
-                   onClick={(e) => handlerGo(e, 'registerUser')}/>
+                   onClick={() => navigate('../registerUser', { replace: false })}/>
         </form>
         <a href="#" className="shopLink"
-           onClick={(e) => handlerGo(e, 'restorePassword')}>Восстановить пароль</a>
+           onClick={(e) => {e.preventDefault();
+               navigate('../restorePassword', { replace: false })}}>Восстановить пароль</a>
     </Container>
 }

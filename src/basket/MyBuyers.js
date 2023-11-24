@@ -1,9 +1,10 @@
 import './basket.css';
 import '../App.css';
-import MyGoodCard from "../cards/MyGoodCard";
 import MyBuyerCard from "../cards/MyBuyerCard";
+import {useNavigate} from "react-router-dom";
 
-export default function MyBuyers({userBase, logged, goods, handlerGo}) {
+export default function MyBuyers({userBase, logged, goods}) {
+    const navigate = useNavigate();
     let outCards = [];
     let myBuysObj = userBase[logged].basketBuyers;
     for (let key in myBuysObj) {
@@ -14,6 +15,6 @@ export default function MyBuyers({userBase, logged, goods, handlerGo}) {
             {outCards}
         </div>
         <input type={"button"} value={'Добавить покупателя'} className={'shopInteractiveElement bottomButton'}
-               onClick={(e) =>  {handlerGo(e, 'addBuyer')}}/>
+               onClick={() =>  {navigate('../addBuyer', { replace: false })}}/>
     </div>
 }

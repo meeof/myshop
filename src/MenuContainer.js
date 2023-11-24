@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Outlet, useNavigate} from "react-router-dom";
 
 let Container = styled.div`
   @media (max-width: 430px) {
@@ -60,37 +61,43 @@ let Menu = styled.div`
       margin: 10px 0;
     }
 `;
-export default function MenuContainer({children, handlerGo, activeButton, handlerActiveMenu}) {
+export default function MenuContainer({children, activeButton, handlerActiveMenu}) {
+    const navigate = useNavigate();
     return <Container>
         <Menu>
             <div className={activeButton === 'catalog' ? 'activeBarButton' : ''}>
                 <div className="mainBarButton"
-                     onClick={(e) =>
-                     {handlerGo(e, 'catalog'); handlerActiveMenu('catalog')}}></div>
+                     onClick={() =>
+                        {handlerActiveMenu('catalog');
+                            navigate('../catalog', { replace: false })}}></div>
                 <div className="mainBarButtonLabel">Каталог</div>
             </div>
             <div className={activeButton === 'basket' ? 'activeBarButton' : ''}>
                 <div className="mainBarButton"
-                     onClick={(e) =>
-                     {handlerGo(e, 'basket'); handlerActiveMenu('basket')}}></div>
+                     onClick={() =>
+                     {handlerActiveMenu('basket');
+                         navigate('../basket', { replace: false })}}></div>
                 <div className="mainBarButtonLabel">Корзина</div>
             </div>
             <div className={activeButton === 'favorites' ? 'activeBarButton' : ''}>
                 <div className="mainBarButton"
-                     onClick={(e) =>
-                     {handlerGo(e, 'favorites'); handlerActiveMenu('favorites')}}></div>
+                     onClick={() =>
+                     {handlerActiveMenu('favorites');
+                         navigate('../favorites', { replace: false })}}></div>
                 <div className="mainBarButtonLabel">Избранное</div>
             </div>
             <div className={activeButton === 'sells' ? 'activeBarButton' : ''}>
                 <div className="mainBarButton"
-                     onClick={(e) =>
-                     {handlerGo(e, 'sells'); handlerActiveMenu('sells')}}></div>
+                     onClick={() =>
+                     {handlerActiveMenu('sells');
+                         navigate('../sells', { replace: false })}}></div>
                 <div className="mainBarButtonLabel">Продажи</div>
             </div>
             <div className={activeButton === 'profile' ? 'activeBarButton' : ''}>
                 <div className="mainBarButton"
-                     onClick={(e) =>
-                     {handlerGo(e, 'profile'); handlerActiveMenu('profile')}}></div>
+                     onClick={() =>
+                     {handlerActiveMenu('profile');
+                         navigate('../profile', { replace: false })}}></div>
                 <div className="mainBarButtonLabel">Профиль</div>
             </div>
         </Menu>

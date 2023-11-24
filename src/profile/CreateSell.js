@@ -1,8 +1,11 @@
 import MenuContainer from "../MenuContainer";
 import './profile.css';
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
-export default function CreateSell({handlerGo, activeButton, handlerActiveMenu, handlerCreateSell}) {
+export default function CreateSell({activeButton, handlerActiveMenu, handlerCreateSell}) {
+    const navigate = useNavigate();
+    handlerActiveMenu('sells');
     let [installment, setInstallment] = useState('pre');
     let [proc, setProc] = useState(true);
     let [preCost, setPreCost] = useState('100');
@@ -17,7 +20,7 @@ export default function CreateSell({handlerGo, activeButton, handlerActiveMenu, 
     function handlerSwitch(val) {
         setProc(val);
     }
-    return <MenuContainer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+    return <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
         <div className="contentContainer">
             <h3 className="shopH1">Создание продажи</h3>
             <form className="formContainer">
@@ -71,7 +74,7 @@ export default function CreateSell({handlerGo, activeButton, handlerActiveMenu, 
                 </div>
             </form>
             <input type={"button"} value={'Сохранить'} className={'shopInteractiveElement bottomButton'}
-                   onClick={(e) =>  {
+                   onClick={() =>  {
                        let outPreCost;
                        switch (installment) {
                            case 'pre' : {
@@ -94,7 +97,8 @@ export default function CreateSell({handlerGo, activeButton, handlerActiveMenu, 
                            description : '',
                            goods : [],
                            preCost : outPreCost,
-                       })
+                       });
+                       navigate('../myShop', { replace: false });
                    }}/>
         </div>
     </MenuContainer>

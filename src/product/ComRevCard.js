@@ -26,7 +26,7 @@ export default function ComRevCard({user, text, img, comRev}) {
     return <Container>
         <span>{from}</span>
         {img !== '' ? <div className="imgReviewComment">
-            <img src="#"/>
+            <img alt={'#'} src="#"/>
         </div> : ''}
         <p>{text}</p>
     </Container>

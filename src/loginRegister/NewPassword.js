@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import './restorePassword.css'
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 let docHeight = document.documentElement.scrollHeight - 20;
 let Container = styled.div`
@@ -12,6 +13,7 @@ let Container = styled.div`
 }
 `;
 export default function NewPassword({handlerNewPassword}) {
+    const navigate = useNavigate();
     let defaultPhoneKey = '1234';
     let [phoneKey, setPhoneKey] = useState('');
     let [password, setPassword] = useState('');
@@ -55,6 +57,7 @@ export default function NewPassword({handlerNewPassword}) {
                 }
                 else {
                     handlerNewPassword(password);
+                    navigate('/', { replace: false });
                 }
 
             }}/>

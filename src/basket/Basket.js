@@ -5,7 +5,8 @@ import MyBuys from "./MyBuys";
 import MyGoods from "./MyGoods";
 import MyBuyers from "./MyBuyers";
 
-export default function Basket({handlerGo, activeButton, handlerActiveMenu, userBase, goods, logged}) {
+export default function Basket({activeButton, handlerActiveMenu, userBase, goods, logged}) {
+    handlerActiveMenu('basket');
     let [viewBasketPage, setViewBasketPage] = useState('buys');
     let outPage;
     switch (viewBasketPage) {
@@ -14,11 +15,11 @@ export default function Basket({handlerGo, activeButton, handlerActiveMenu, user
             break;
         }
         case 'goods' : {
-            outPage = <MyGoods userBase={userBase} goods={goods} logged={logged} handlerGo={handlerGo}/>
+            outPage = <MyGoods userBase={userBase} goods={goods} logged={logged}/>
             break
         }
         case 'buyers' : {
-            outPage = <MyBuyers userBase={userBase} goods={goods} logged={logged} handlerGo={handlerGo}/>
+            outPage = <MyBuyers userBase={userBase} goods={goods} logged={logged}/>
             break
         }
     }
@@ -26,7 +27,7 @@ export default function Basket({handlerGo, activeButton, handlerActiveMenu, user
         setViewBasketPage(pageKey);
     }
     return <>
-        <MenuContainer handlerGo={handlerGo} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+        <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
             <HeadBasket viewBasketPage={viewBasketPage} handlerHeadBasket={handlerHeadBasket}/>
             {outPage}
         </MenuContainer>

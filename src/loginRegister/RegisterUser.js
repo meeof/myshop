@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 let docHeight = document.documentElement.scrollHeight - 20;
 let Container = styled.div`
@@ -11,6 +12,7 @@ let Container = styled.div`
 }
 `;
 export default function RegisterUser({handlerRegister}) {
+    const navigate = useNavigate();
     let [surname, setSurname] = useState('');
     let [name, setName] = useState('');
     let [phone, setPhone] = useState('');
@@ -81,14 +83,17 @@ export default function RegisterUser({handlerRegister}) {
             <input type="submit" value="Зарегистрироваться" className={'shopBottomButton shopInteractiveElement'}
             onClick={(e)=> {
                 e.preventDefault();
-                handlerRegister({
+                let success = handlerRegister({
                     surname : surname,
                     name : name,
                     phone : phone,
                     email : email,
                     password : password,
                     repeat : repeat,
-                })
+                });
+                if (success) {
+                    navigate('/', { replace: false });
+                }
             }}/>
         </form>
     </Container>

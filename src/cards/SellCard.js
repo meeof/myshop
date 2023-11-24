@@ -5,9 +5,10 @@ import noFavoritesImage from "../images/noFavorites.svg";
 import findImage from  "../images/findBlack.svg";
 import {useMemo, useState} from "react";
 import {randomColor} from "../App";
-export default function SellCard({sell, goods, isSeller, id, handlerDeleteSell, handlerOutSell, handlerGo,
-                                     handlerDeleteSellInProfile, profile, handlerAddSellToProfile, main, handlerToFavorites,
-                                 handlerFromFavorites}) {
+import {useNavigate} from "react-router-dom";
+export default function SellCard({sell, goods, isSeller, id, handlerDeleteSell, handlerOutSell, handlerDeleteSellInProfile,
+                                     profile, handlerAddSellToProfile, main, handlerToFavorites, handlerFromFavorites}) {
+    const navigate = useNavigate();
     const bgColor = useMemo(
         () => randomColor(0.08),
         []
@@ -29,9 +30,10 @@ export default function SellCard({sell, goods, isSeller, id, handlerDeleteSell, 
     let cardButtons;
     if (!isSeller) {
         cardButtons = <>
-            <div className="imageCard" onClick={(e)=> {handlerOutSell(id);
-                handlerGo(e, 'viewSells')}}>
-                <img src={imagePen}/>
+            <div className="imageCard" onClick={()=> {handlerOutSell(id);
+                navigate('../viewSells', { replace: false });
+            }}>
+                <img alt={'#'} src={imagePen}/>
             </div>
             <div className="imageCard" onClick={()=> {
                 if (!profile) {
@@ -41,7 +43,7 @@ export default function SellCard({sell, goods, isSeller, id, handlerDeleteSell, 
                     handlerDeleteSellInProfile(id);
                 }
             }}>
-                <img src={imageDelete}/>
+                <img alt={'#'} src={imageDelete}/>
             </div>
         </>
     }
@@ -53,27 +55,27 @@ export default function SellCard({sell, goods, isSeller, id, handlerDeleteSell, 
     }
     if (main) {
         cardButtons = <>
-            <div className="imageCard" onClick={(e)=> {
+            <div className="imageCard" onClick={()=> {
                 handlerOutSell(id);
-                handlerGo(e, 'viewSellMain');
+                navigate('../viewSellMain', { replace: false });
             }}>
-                <img src={findImage}/>
+                <img alt={'#'} src={findImage}/>
             </div>
             <div className="imageCard" onClick={
                 () => {
                     if (handlerToFavorites) {
                         handlerToFavorites(id);
                         setAddFav('popUp-active');
-                        let timeoutPopUp = window.setTimeout(clearPopUpActive, 1000);
+                        window.setTimeout(clearPopUpActive, 1000);
                     }
                     else {
                         handlerFromFavorites(id);
                     }
                 }}>
                 {handlerToFavorites ? <>
-                    <img src={starImage}/>
+                    <img alt={'#'} src={starImage}/>
                     <div className={`popUp ${addFav}`}>Добавлено</div>
-                </> : <img src={noFavoritesImage}/>}
+                </> : <img alt={'#'} src={noFavoritesImage}/>}
             </div>
         </>
     }
@@ -84,10 +86,10 @@ export default function SellCard({sell, goods, isSeller, id, handlerDeleteSell, 
             <span>by {sell.user}</span>
         </div>
         <div className={'sellImgContainer'}>
-            <img src={images[0]} className={'sellImage'}/>
-            <img src={images[1]} className={'sellImage'}/>
-            <img src={images[2]} className={'sellImage'}/>
-            <img src={images[3]} className={'sellImage'}/>
+            <img alt={'#'} src={images[0]} className={'sellImage'}/>
+            <img alt={'#'} src={images[1]} className={'sellImage'}/>
+            <img alt={'#'} src={images[2]} className={'sellImage'}/>
+            <img alt={'#'} src={images[3]} className={'sellImage'}/>
         </div>
         <div className='cardButtons'>
             {cardButtons}

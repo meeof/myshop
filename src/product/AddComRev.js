@@ -58,7 +58,7 @@ export default function AddComRev({comRev, handlerAddComRev}) {
             {
                 write ? <><textarea className="addComRevArea" placeholder={`Напишите ${text} ...`}
                 value={areaText} onChange={(e)=> handlerTextArea(e)}></textarea>
-                    <img src={imageCamera}/></> : <></>
+                    <img alt={'#'} src={imageCamera}/></> : <></>
             }
         </Container> : <></>
         }
