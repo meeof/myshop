@@ -14,3 +14,12 @@ export function randomColor(opacity) {
     return Math.round(Math.random() * 224);
   }
 }
+export function findMatch(find, text) {
+  if (find === '') {
+    return true
+  }
+  else if (text.toLowerCase().includes(find.toLowerCase())) {
+    return true
+  }
+  return false;
+}

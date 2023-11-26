@@ -1,15 +1,26 @@
 import MenuContainer from "../MenuContainer";
 import './product.css';
 import imageArrow from '../images/prodArrow.svg'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ComRevBlock from "./ComRevBlock";
 import basketImage from "../images/basket.svg";
 import starImage from "../images/star.svg";
 import Carousel from "../Carousel";
+import {useNavigate} from "react-router-dom";
 
 export default function ProductView({activeButton, handlerActiveMenu, outGoodKey, goods, handlerAddComRev,
-                                    handlerAddMyBuy, handlerToFavorites}) {
-    handlerActiveMenu('catalog');
+                                    handlerAddMyBuy, handlerToFavorites, logged}) {
+    const navigate = useNavigate();
+    let redFlag = false;
+    if (!logged || !outGoodKey) {
+        redFlag = true;
+    }
+    useEffect(() => {
+        if (!logged || !outGoodKey) {
+            navigate('/', { replace: false });
+        }
+        handlerActiveMenu('catalog');
+    }, []);
     let [comRev, setComRev] = useState('');
     let [addBasket, setAddBasket] = useState(false);
     let [goodAmount, setGoodAmount] = useState('');
@@ -25,7 +36,7 @@ export default function ProductView({activeButton, handlerActiveMenu, outGoodKey
             setComRev(status);
         }
     }
-    return <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+    return <>{redFlag ? <></> : <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} logged={logged}>
         <div className="productContainer">
             <Carousel imagesUrlArr={goods[outGoodKey].images} mainImage={goods[outGoodKey].image}></Carousel>
             <div className="productDescription">
@@ -65,14 +76,14 @@ export default function ProductView({activeButton, handlerActiveMenu, outGoodKey
                 </div>
                 <input type="button" value="Отзывы" className="shopInteractiveElement"
                        onClick={()=> handlerComRev('reviews')}
-                style={comRev === 'reviews' ? {background: "white"} : {}}/>
+                       style={comRev === 'reviews' ? {background: "white"} : {}}/>
                 <input type="button" value="Комментарии" className="shopInteractiveElement"
                        onClick={()=> handlerComRev('comments')}
                        style={comRev === 'comments' ? {background: "white"} : {}}/>
             </div>
         </div>
         <ComRevBlock comRev={comRev} outGoodKey={outGoodKey} goods={goods} handlerAddComRev={handlerAddComRev}/>
-    </MenuContainer>
+    </MenuContainer>}</>
 }
 {/*<button className="shopInteractiveElement addBasket-big" onClick={()=> setAddBasket('popUpBasket-active')}>
                     В корзину

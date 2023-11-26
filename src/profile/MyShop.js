@@ -3,27 +3,35 @@ import ProfileCard from "./ProfileCard";
 import SellCard from "../cards/SellCard";
 import GoodInSellCard from "../cards/GoodInSellCard";
 import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 export default function MyShop({handlerActiveMenu, activeButton, sells, goods, logged, userBase, handlerOutSell,
                                    handlerOutGood, handlerDeleteGoodInProfile, handlerDeleteSellInProfile,
                                    handlerOutAddSellOrAddGood}) {
-    handlerActiveMenu('profile');
     const navigate = useNavigate();
-    let cards = [];
-    for (let key of userBase[logged].myGoods) {
-        if (goods[key]) {
-            cards.push(<GoodInSellCard key={key} goodId={key} goods={goods} handlerOutGood={handlerOutGood}
-                                       handlerDeleteGoodInProfile={handlerDeleteGoodInProfile} profile={true}/>)
+    useEffect(() => {
+        if (!logged) {
+            navigate('/', { replace: false });
         }
-    }
-    for (let key of userBase[logged].mySells) {
-        if (sells[key]) {
-            cards.push(<SellCard key={key} sell={sells[key]} goods={goods} id={key} handlerDeleteSellInProfile={handlerDeleteSellInProfile}
-                                 handlerOutSell={handlerOutSell} handlerOutGood={handlerOutGood} profile={true}/>)
+        handlerActiveMenu('profile');
+    }, []);
+    let cards = [];
+    if (logged) {
+        for (let key of userBase[logged].myGoods) {
+            if (goods[key]) {
+                cards.push(<GoodInSellCard key={key} goodId={key} goods={goods} handlerOutGood={handlerOutGood}
+                                           handlerDeleteGoodInProfile={handlerDeleteGoodInProfile} profile={true}/>)
+            }
+        }
+        for (let key of userBase[logged].mySells) {
+            if (sells[key]) {
+                cards.push(<SellCard key={key} sell={sells[key]} goods={goods} id={key} handlerDeleteSellInProfile={handlerDeleteSellInProfile}
+                                     handlerOutSell={handlerOutSell} handlerOutGood={handlerOutGood} profile={true}/>)
+            }
         }
     }
     return <>
-        <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+        {!logged ? <></> : <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} logged={logged}>
             <ProfileCard name={userBase[logged].shopName} description={userBase[logged].shopDescription}
                          image={userBase[logged].profileImage} isShop={true}/>
             <div className={'cardPlace'}>
@@ -39,6 +47,6 @@ export default function MyShop({handlerActiveMenu, activeButton, sells, goods, l
                     navigate('../мyShopAdd', { replace: false });
                 }}/>
             </div>
-        </MenuContainer>
+        </MenuContainer>}
     </>
 }

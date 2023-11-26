@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {Outlet, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 let Container = styled.div`
   @media (max-width: 430px) {
@@ -22,11 +23,24 @@ let Menu = styled.div`
     align-items: center;
   }
   .mainBarButton {
-    width: 28px;
-    height: 28px;
-    border: solid #CC992E 3px;
+    position: relative;
+    width: 27.5px;
+    height: 27.5px;
     border-radius: 5px;
+    background: #fff;
+    text-align: center;
     cursor: pointer;
+  }
+  .mainBarButton:before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    background: linear-gradient(35deg, rgba(0, 225, 0, 0.5), rgba( 0, 0, 225, 0.5), rgba(0, 225, 0, 0.5));
+    border-radius: 5px;
+    z-index: -1;
   }
   .mainBarButtonLabel {
     color: #0000FF;
@@ -35,8 +49,12 @@ let Menu = styled.div`
     font-size: 0.7rem;
   }
   .activeBarButton > .mainBarButton {
-    border-color: #0000FF;
-    background-color: #B5CCE5;
+    border-image: none;
+    border: solid #0000FF 3px;
+  }
+  .activeBarButton > .mainBarButton:before {
+    position: absolute;
+    content: none;
   }
   .activeBarButton > .mainBarButtonLabel {
     color: #0000FF;
@@ -61,8 +79,13 @@ let Menu = styled.div`
       margin: 10px 0;
     }
 `;
-export default function MenuContainer({children, activeButton, handlerActiveMenu}) {
+export default function MenuContainer({children, activeButton, handlerActiveMenu, logged}) {
     const navigate = useNavigate();
+    useEffect(() => {
+        if (!logged) {
+            navigate('/', { replace: false })
+        }
+    }, []);
     return <Container>
         <Menu>
             <div className={activeButton === 'catalog' ? 'activeBarButton' : ''}>

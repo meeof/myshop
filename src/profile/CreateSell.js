@@ -1,11 +1,13 @@
 import MenuContainer from "../MenuContainer";
 import './profile.css';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-export default function CreateSell({activeButton, handlerActiveMenu, handlerCreateSell}) {
+export default function CreateSell({activeButton, handlerActiveMenu, handlerCreateSell, logged}) {
+    useEffect(() => {
+        handlerActiveMenu('sells');
+    }, []);
     const navigate = useNavigate();
-    handlerActiveMenu('sells');
     let [installment, setInstallment] = useState('pre');
     let [proc, setProc] = useState(true);
     let [preCost, setPreCost] = useState('100');
@@ -20,7 +22,7 @@ export default function CreateSell({activeButton, handlerActiveMenu, handlerCrea
     function handlerSwitch(val) {
         setProc(val);
     }
-    return <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+    return <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} logged={logged}>
         <div className="contentContainer">
             <h3 className="shopH1">Создание продажи</h3>
             <form className="formContainer">

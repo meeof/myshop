@@ -1,16 +1,32 @@
 import GoodCard from "../cards/GoodCard";
 import MenuContainer from "../MenuContainer";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function SellMain({sells, goods, outSellKey, handlerActiveMenu, activeButton, handlerOutGood,
-                                     handlerToFavorites, handlerAddMyBuy}) {
-    handlerActiveMenu('sells');
-    let goodsInSell = sells[outSellKey].goods;
-    let cards = [];
-    for (let key of goodsInSell) {
-        cards.push(<GoodCard key={key} good={goods[key]} handlerOutGood={handlerOutGood}
-                             goodId={key} handlerToFavorites={handlerToFavorites} handlerAddMyBuy={handlerAddMyBuy}/>)
+                                     handlerToFavorites, handlerAddMyBuy, logged}) {
+    const nav = useNavigate();
+    let redFlag = false;
+    if (!logged || !outSellKey) {
+        redFlag = true;
     }
-    return <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}>
+    useEffect(() => {
+        if (redFlag) {
+            nav('/', { replace: false });
+        }
+        handlerActiveMenu('sells');
+    }, []);
+    let goodsInSell = [];
+    let cards = [];
+    if (!redFlag) {
+        goodsInSell = sells[outSellKey].goods;
+        for (let key of goodsInSell) {
+            cards.push(<GoodCard key={key} good={goods[key]} handlerOutGood={handlerOutGood}
+                                 goodId={key} handlerToFavorites={handlerToFavorites} handlerAddMyBuy={handlerAddMyBuy}/>)
+        }
+    }
+    return <>
+    {redFlag ? <></> : <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} logged={logged}>
         <div className={'contentContainer'}>
             <div className={'sellHead'}>
                 <h3>{sells[outSellKey].name}</h3>
@@ -26,5 +42,6 @@ export default function SellMain({sells, goods, outSellKey, handlerActiveMenu, a
                 {cards}
             </div>
         </div>
-    </MenuContainer>
+    </MenuContainer>}
+    </>
 }

@@ -22,8 +22,11 @@ let FindContainer = styled.div`
     width: 50%;
   }
 `
-
-export default function Find({place}) {
+export default function Find({place, findText, handlerFind}) {
+    let textInput = '';
+    if (findText) {
+        textInput = findText;
+    }
     let placeholder = "Поиск товара, продажи, пользователя";
     if (place === 'sells') {
         placeholder = 'Поиск продажи';
@@ -33,6 +36,8 @@ export default function Find({place}) {
     }
     return <FindContainer>
         <img alt={'#'} src={findImage}/>
-        <FindInput placeholder={placeholder}/>
+        <FindInput placeholder={placeholder} value={textInput} onChange={(e) => {
+            if (handlerFind) {
+                handlerFind(e.target.value)}}}/>
     </FindContainer>
 }
