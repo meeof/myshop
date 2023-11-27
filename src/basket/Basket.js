@@ -6,9 +6,10 @@ import MyGoods from "./MyGoods";
 import MyBuyers from "./MyBuyers";
 import {useNavigate} from "react-router-dom";
 
-export default function Basket({activeButton, handlerActiveMenu, userBase, goods, logged}) {
+export default function Basket({activeButton, handlerActiveMenu, userBase, goods, logged, handlerFind, findText}) {
     const navigate = useNavigate();
     useEffect(() => {
+        handlerFind('');
         if (!logged) {
             navigate('/', { replace: false });
         }
@@ -19,15 +20,15 @@ export default function Basket({activeButton, handlerActiveMenu, userBase, goods
     if (logged) {
         switch (viewBasketPage) {
             case 'buys' : {
-                outPage = <MyBuys userBase={userBase} goods={goods} logged={logged}/>
+                outPage = <MyBuys userBase={userBase} goods={goods} logged={logged} findText={findText}/>
                 break;
             }
             case 'goods' : {
-                outPage = <MyGoods userBase={userBase} goods={goods} logged={logged}/>
+                outPage = <MyGoods userBase={userBase} goods={goods} logged={logged} findText={findText}/>
                 break
             }
             case 'buyers' : {
-                outPage = <MyBuyers userBase={userBase} goods={goods} logged={logged}/>
+                outPage = <MyBuyers userBase={userBase} goods={goods} logged={logged} findText={findText}/>
                 break
             }
         }
@@ -37,7 +38,8 @@ export default function Basket({activeButton, handlerActiveMenu, userBase, goods
     }
     return <>
         <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} logged={logged}>
-            <HeadBasket viewBasketPage={viewBasketPage} handlerHeadBasket={handlerHeadBasket}/>
+            <HeadBasket viewBasketPage={viewBasketPage} handlerHeadBasket={handlerHeadBasket} handlerFind={handlerFind}
+                        findText={findText}/>
             {outPage}
         </MenuContainer>
     </>

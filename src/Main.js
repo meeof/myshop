@@ -11,6 +11,7 @@ export default function Main({activeButton, handlerActiveMenu, goods, handlerOut
                              handlerAddMyBuy, sells, handlerOutSell, userBase, handlerOutUserKey, handlerFind, findText}) {
     const navigate = useNavigate();
     useEffect(() => {
+        handlerFind('');
         if (!logged) {
             navigate('/', { replace: false });
         }
@@ -25,14 +26,22 @@ export default function Main({activeButton, handlerActiveMenu, goods, handlerOut
             }
         }
         for (let key in sells) {
-            cards.push(<SellCard key={key} sell={sells[key]} goods={goods} id={key} handlerOutGood={handlerOutGood} main={true}
-                                 handlerToFavorites={handlerToFavorites}
-                                 handlerOutSell={handlerOutSell}/>)
+            if (findMatch(findText, sells[key].name + sells[key].description + sells[key].user)) {
+                cards.push(<SellCard key={key} sell={sells[key]} goods={goods} id={key} handlerOutGood={handlerOutGood} main={true}
+                                     handlerToFavorites={handlerToFavorites}
+                                     handlerOutSell={handlerOutSell}/>)
+            }
         }
         for (let key in userBase) {
-            cards.push(<ProfileMainCard sells={sells} name={key} key={key} description={userBase[key].description}
-                                        userSells={userBase[key].mySells} handlerOutSell={handlerOutSell}
-                                        handlerOutUserKey={handlerOutUserKey}/>)
+            let sellNames = '';
+            for (let nameSell of userBase[key].mySells) {
+                sellNames += sells[nameSell].name;
+            }
+            if (findMatch(findText, userBase[key].description + key + sellNames)) {
+                cards.push(<ProfileMainCard sells={sells} name={key} key={key} description={userBase[key].description}
+                                            userSells={userBase[key].mySells} handlerOutSell={handlerOutSell}
+                                            handlerOutUserKey={handlerOutUserKey}/>)
+            }
         }
     }
     return <>

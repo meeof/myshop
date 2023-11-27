@@ -588,8 +588,8 @@ export default function Shop() {
                             handlerFromFavorites={handlerFromFavorites} handlerAddMyBuy={handlerAddMyBuy} sells={sells}
                             handlerOutSell={handlerOutSell}/>} />
             <Route path={"basket"} element=
-                {<Basket activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
-                         userBase={userBase} goods={goods} logged={logged}/>} />
+                {<Basket activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} findText={findText}
+                         userBase={userBase} goods={goods} logged={logged} handlerFind={handlerFind}/>} />
             <Route path={'catalog'} element=
                 {<Main activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
                        goods={goods} handlerOutGood={handlerOutGood} handlerToFavorites={handlerToFavorites}

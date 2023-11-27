@@ -10,7 +10,7 @@
     font-size: 1rem;
 }
 .productDescription > * {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.8rem;
 }
 .productDescription h4 {
     font-size: 1.2rem;
@@ -83,7 +83,17 @@
         margin-left: auto;
         margin-right: auto;
     }
+    .productButtons {
+        padding-top: 15px;
+    }
 }
 @media (max-width: 430px) {
-
+    .productButtons {
+        position: fixed;
+        bottom: 70px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+        background-color: white;
+    }
 }

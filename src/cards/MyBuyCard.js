@@ -9,7 +9,6 @@ export default function MyBuyCard({date, goodsKeys, goods}) {
     let outGoods = [];
     let counter = 0;
     for (let good of goodsKeys) {
-
         let preCostProc = goods[good.key].preCost.match(/\d+%/);
         let isOrange = false;
         if (parseInt(preCostProc[0]) < 51) {
@@ -25,6 +24,7 @@ export default function MyBuyCard({date, goodsKeys, goods}) {
         )
         counter++;
     }
+
     return <div className={'basketCardContainer'} style={{backgroundColor: bgColor}}>
         <h3 className="basketCardHeader">{date}</h3>
             {outGoods}

@@ -15,6 +15,9 @@
         grid-template-columns: 1fr 3fr 1fr 3fr;
         width: 60%;
     }
+    .loginForm > p {
+        align-self: center;
+    }
     .buttonEnter {
         grid-column: 1/3;
     }

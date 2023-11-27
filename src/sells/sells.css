@@ -1,5 +1,8 @@
+.sellHead {
+    padding: 10px;
+}
 .sellHead > * {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .sellImgContainer {
     align-self: center;

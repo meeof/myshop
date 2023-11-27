@@ -21,8 +21,10 @@ export default function Sells({activeButton, handlerActiveMenu, sells, goods, ha
             <div className={'cardPlace'}>
                 {cards}
             </div>
-            <input type={"button"} value={'Создать продажу'} className={'shopInteractiveElement bottomButton'}
-                   onClick={() =>  {navigate('../createSell', { replace: false })}}/>
+            <div className={'bottomButtonContainer'}>
+                <input type={"button"} value={'Создать продажу'} className={'shopInteractiveElement bottomButton'}
+                       onClick={() =>  {navigate('../createSell', { replace: false })}}/>
+            </div>
         </div>
     </MenuContainer>
 }

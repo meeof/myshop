@@ -48,20 +48,24 @@ export default function MyShopAdd({activeButton, handlerActiveMenu, addSellOut, 
                     <div className={'cardPlace'}>
                         {goodsContent}
                     </div>
-                    <input type={"button"} value={'Создать товар'} className={'shopInteractiveElement bottomButton'}
-                           onClick={() =>  {
-                               navigate('../createGood', { replace: false });
-                           }}/>
+                    <div className={'bottomButtonContainer'}>
+                        <input type={"button"} value={'Создать товар'} className={'shopInteractiveElement bottomButton'}
+                               onClick={() =>  {
+                                   navigate('../createGood', { replace: false });
+                               }}/>
+                    </div>
                 </div>
             </> : <>
                 <div className={'contentContainer'}>
                     <div className={'cardPlace'}>
                         {sellsContent}
                     </div>
-                    <input type={"button"} value={'Создать продажу'} className={'shopInteractiveElement bottomButton'}
-                           onClick={() =>  {
-                               navigate('../createSell', { replace: false });
-                           }}/>
+                    <div className={'bottomButtonContainer'}>
+                        <input type={"button"} value={'Создать продажу'} className={'shopInteractiveElement bottomButton'}
+                               onClick={() =>  {
+                                   navigate('../createSell', { replace: false });
+                               }}/>
+                    </div>
                 </div></>}
         </MenuContainer>
     </>

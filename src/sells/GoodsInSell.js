@@ -35,10 +35,12 @@ export default function GoodsInSell({sells, goods, outSellKey, handlerActiveMenu
                 <div className={'cardPlace'}>
                     {cards}
                 </div>
-                <input type={"button"} value={'Создать товар'} className={'shopInteractiveElement bottomButton'}
-                       onClick={() =>  {
-                           nav('../createGood', { replace: false });
-                       }}/>
+                <div className={'bottomButtonContainer'}>
+                    <input type={"button"} value={'Создать товар'} className={'shopInteractiveElement bottomButton'}
+                           onClick={() =>  {
+                               nav('../createGood', { replace: false });
+                           }}/>
+                </div>
             </div>
         </MenuContainer>
     </>

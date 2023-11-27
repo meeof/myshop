@@ -2,7 +2,7 @@ import Find from "../Find";
 import arrowsImage from '../images/arrows.svg';
 import shiftImage from '../images/shift.svg';
 import './headBasket.css';
-export default function HeadBasket({viewBasketPage, handlerHeadBasket}) {
+export default function HeadBasket({viewBasketPage, handlerHeadBasket, handlerFind, findText}) {
     return <div className={'headContainer'}>
         <div className="headButtons">
             <input type="button"
@@ -16,7 +16,7 @@ export default function HeadBasket({viewBasketPage, handlerHeadBasket}) {
                    onClick={() => handlerHeadBasket('buyers')} value="Покупатели"/>
         </div>
         <div className="findBasketCont">
-                <Find/>
+                <Find handlerFind={handlerFind} findText={findText}/>
                 <img alt={'#'} src={arrowsImage}/>
                 <img alt={'#'} src={shiftImage}/>
         </div>

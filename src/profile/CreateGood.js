@@ -37,17 +37,19 @@ export default function CreateGood({activeButton, handlerActiveMenu, handlerCrea
                     <textarea className="productDescriptionField" placeholder="Описание" value={description}
                               onChange={(e)=> setDescription(e.target.value)}/>
             </form>
-            <input type={"button"} value={'Сохранить'} className={'shopInteractiveElement bottomButton'}
-            onClick={() => {
-                handlerCreateGood({
-                    name,
-                    cost,
-                    preCost,
-                    delivery,
-                    description,
-                });
-                navigate('../myShop', { replace: false });
-            }}/>
+            <div className={'bottomButtonContainer'}>
+                <input type={"button"} value={'Сохранить'} className={'shopInteractiveElement bottomButton'}
+                       onClick={() => {
+                           handlerCreateGood({
+                               name,
+                               cost,
+                               preCost,
+                               delivery,
+                               description,
+                           });
+                           navigate('../myShop', { replace: false });
+                       }}/>
+            </div>
         </div>
     </MenuContainer>
 }

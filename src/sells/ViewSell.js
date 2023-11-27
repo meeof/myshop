@@ -42,10 +42,12 @@ export default function ViewSell({sells, goods, outSellKey, handlerActiveMenu, a
             <div className={'cardPlace'}>
                 {cards}
             </div>
-            <input type={"button"} value={'Добавить товар'} className={'shopInteractiveElement bottomButton'}
-                   onClick={() =>  {
-                       navigate('../goodsInSell', { replace: false });
-                   }}/>
+            <div className={'bottomButtonContainer'}>
+                <input type={"button"} value={'Добавить товар'} className={'shopInteractiveElement bottomButton'}
+                       onClick={() =>  {
+                           navigate('../goodsInSell', { replace: false });
+                       }}/>
+            </div>
         </div>
     </MenuContainer>}
     </>

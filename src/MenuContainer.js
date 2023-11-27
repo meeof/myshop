@@ -17,6 +17,7 @@ let Menu = styled.div`
   z-index: 999;
   > * {
     width: 50px;
+    height: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,53 +25,53 @@ let Menu = styled.div`
   }
   .mainBarButton {
     position: relative;
-    width: 27.5px;
-    height: 27.5px;
+    width: 29px;
+    height: 29px;
     border-radius: 5px;
     background: #fff;
     text-align: center;
     cursor: pointer;
+    margin: auto;
   }
   .mainBarButton:before {
     content: "";
     position: absolute;
-    top: -2px;
-    bottom: -2px;
-    left: -2px;
-    right: -2px;
+    top: -2.5px;
+    bottom: -2.5px;
+    left: -2.5px;
+    right: -2.5px;
     background: linear-gradient(35deg, rgba(0, 225, 0, 0.5), rgba( 0, 0, 225, 0.5), rgba(0, 225, 0, 0.5));
-    border-radius: 5px;
+    border-radius: 6px;
     z-index: -1;
-  }
-  .mainBarButtonLabel {
-    color: #0000FF;
   }
   * {
     font-size: 0.7rem;
   }
-  .activeBarButton > .mainBarButton {
-    border-image: none;
-    border: solid #0000FF 3px;
-  }
   .activeBarButton > .mainBarButton:before {
-    position: absolute;
-    content: none;
+    background: rgba( 0, 0, 225, 1);
   }
   .activeBarButton > .mainBarButtonLabel {
     color: #0000FF;
   }
   .mainBarButtonLabel {
-    margin-top: 5px;
+    margin-top: 10px;
+    color: #0000FF;
+    font-weight: bold;
   }
   @media (max-width: 430px) {
     bottom: 0;
     width: 100%;
-    border-top: solid black 1px;
     justify-content: space-evenly;
     height: 50px;
     padding-bottom: 10px;
     padding-top: 10px;
   };
+  @media (min-width: 370px) and (max-width: 430px) {
+    .mainBarButtonLabel {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
   @media (min-width: 430px) {
     left: 0;
     flex-direction: column;

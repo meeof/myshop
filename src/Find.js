@@ -14,6 +14,7 @@ let FindContainer = styled.div`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 15px;
   
   @media (max-width: 430px) {
     width: 90%;

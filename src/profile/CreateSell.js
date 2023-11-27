@@ -75,33 +75,35 @@ export default function CreateSell({activeButton, handlerActiveMenu, handlerCrea
                     </div>
                 </div>
             </form>
-            <input type={"button"} value={'Сохранить'} className={'shopInteractiveElement bottomButton'}
-                   onClick={() =>  {
-                       let outPreCost;
-                       switch (installment) {
-                           case 'pre' : {
-                               outPreCost = `Предоплата: ${preCost} ${proc ? "%" : "Руб."}`
-                               break;
+            <div className={'bottomButtonContainer'}>
+                <input type={"button"} value={'Сохранить'} className={'shopInteractiveElement bottomButton'}
+                       onClick={() =>  {
+                           let outPreCost;
+                           switch (installment) {
+                               case 'pre' : {
+                                   outPreCost = `Предоплата: ${preCost} ${proc ? "%" : "Руб."}`
+                                   break;
+                               }
+                               case 'rec' : {
+                                   outPreCost = 'Оплата при получении';
+                                   break;
+                               }
+                               case 'del' : {
+                                   outPreCost = `Оплата с отсрочкой ${days} дней`;
+                               }
                            }
-                           case 'rec' : {
-                               outPreCost = 'Оплата при получении';
-                               break;
-                           }
-                           case 'del' : {
-                               outPreCost = `Оплата с отсрочкой ${days} дней`;
-                           }
-                       }
-                       handlerCreateSell({
-                           name,
-                           date,
-                           time,
-                           place,
-                           description : '',
-                           goods : [],
-                           preCost : outPreCost,
-                       });
-                       navigate('../myShop', { replace: false });
-                   }}/>
+                           handlerCreateSell({
+                               name,
+                               date,
+                               time,
+                               place,
+                               description : '',
+                               goods : [],
+                               preCost : outPreCost,
+                           });
+                           navigate('../myShop', { replace: false });
+                       }}/>
+            </div>
         </div>
     </MenuContainer>
 }
