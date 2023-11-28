@@ -586,7 +586,7 @@ export default function Shop() {
             <Route path={"/favorites"} element={<Favorites activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
                             userBase={userBase} logged={logged} goods={goods} handlerOutGood={handlerOutGood}
                             handlerFromFavorites={handlerFromFavorites} handlerAddMyBuy={handlerAddMyBuy} sells={sells}
-                            handlerOutSell={handlerOutSell}/>} />
+                            handlerOutSell={handlerOutSell} handlerFind={handlerFind} findText={findText}/>}/>
             <Route path={"basket"} element=
                 {<Basket activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} findText={findText}
                          userBase={userBase} goods={goods} logged={logged} handlerFind={handlerFind}/>} />
@@ -606,11 +606,12 @@ export default function Shop() {
                 {<AddGood activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
                           goods={goods} handlerOutGood={handlerOutGood} logged={logged}/>}/>
             <Route path={'addBuyer'} element=
-                {<AddBuyer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} userBase={userBase} logged={logged}/>}/>
+                {<AddBuyer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} userBase={userBase} logged={logged}
+                           findText={findText} handlerFind={handlerFind}/>}/>
             <Route path={'sells'} element=
                 {<Sells activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
                         sells={sells} goods={goods} handlerDeleteSell={handlerDeleteSell} handlerOutSell={handlerOutSell}
-                        handlerOutGood={handlerOutGood} logged={logged}/>}/>
+                        handlerOutGood={handlerOutGood} logged={logged} findText={findText} handlerFind={handlerFind}/>}/>
             <Route path={'viewSells'} element=
                 {<ViewSell activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
                            sells={sells} goods={goods} outSellKey={outSellKey} handlerDeleteGoodInSell={handlerDeleteGoodInSell}
@@ -628,13 +629,13 @@ export default function Shop() {
                 {<MyShopAdd addSellOut={addSellOut} activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
                             userBase={userBase} logged={logged} goods={goods} handlerOutGood={handlerOutGood} handlerAddGoodToProfile={handlerAddGoodToProfile}
                             sells={sells} handlerDeleteSellInProfile={handlerDeleteSellInProfile} handlerOutSell={handlerOutSell}
-                            handlerAddSellToProfile={handlerAddSellToProfile}/>}/>
+                            handlerAddSellToProfile={handlerAddSellToProfile} handlerFind={handlerFind} findText={findText}/>}/>
             <Route path={'goodsInSell'} element=
                 {<GoodsInSell activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
                               sells={sells} goods={goods} outSellKey={outSellKey} handlerAddToSell={handlerAddToSell}
-                              handlerOutGood={handlerOutGood} logged={logged}/>}/>
+                              handlerOutGood={handlerOutGood} logged={logged} handlerFind={handlerFind} findText={findText}/>}/>
             <Route path={'history'} element=
-                {<History activeButton={activeButton} handlerActiveMenu={handlerActiveMenu}
+                {<History activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} findText={findText} handlerFind={handlerFind}
                           userBase={userBase} goods={goods} sells={sells} logged={logged} handlerOutGood={handlerOutGood}
                           handlerToFavorites={handlerToFavorites} handlerAddMyBuy={handlerAddMyBuy}/>}/>
             <Route path={'createSell'} element=

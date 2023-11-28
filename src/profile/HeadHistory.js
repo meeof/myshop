@@ -1,6 +1,6 @@
 import Find from "../Find";
 
-export default function HeadHistory({viewHistoryPage, handlerHeadHistory}) {
+export default function HeadHistory({viewHistoryPage, handlerHeadHistory, handlerFind, findText}) {
     return <div className={'headContainer'}>
         <div className="headButtons">
             <input type="button"
@@ -11,7 +11,7 @@ export default function HeadHistory({viewHistoryPage, handlerHeadHistory}) {
                    onClick={() => handlerHeadHistory('sales')} value="Продано"/>
         </div>
         <div className="findBasketCont">
-            <Find place={'goods'}/>
+            <Find place={'goods'} findText={findText} handlerFind={handlerFind}/>
         </div>
     </div>
 }
