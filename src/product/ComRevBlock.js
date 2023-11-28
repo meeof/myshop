@@ -1,6 +1,7 @@
 import ComRevCard from "./ComRevCard";
 import styled from "styled-components";
 import AddComRev from "./AddComRev";
+import {useEffect} from "react";
 let NoComRevText = styled.p`
     opacity: 0.5;
   padding: 5px;

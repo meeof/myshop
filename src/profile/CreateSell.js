@@ -24,8 +24,8 @@ export default function CreateSell({activeButton, handlerActiveMenu, handlerCrea
     }
     return <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} logged={logged}>
         <div className="contentContainer">
-            <h3 className="shopH1">Создание продажи</h3>
             <form className="formContainer">
+                <h3 className="shopH1">Создание продажи</h3>
                 <div className="fieldAndLabel">
                     <span>Название</span>
                     <input className="shopInteractiveElement" value={name}

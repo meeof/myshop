@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import imageCamera from '../images/camera.svg'
-import {useState} from "react";
+import {useRef, useState} from "react";
 
 let Container = styled.div`
   position: relative;
@@ -50,13 +50,14 @@ export default function AddComRev({comRev, handlerAddComRev}) {
                 <input type="button" className="shopInteractiveElement" value={`Добавить ${text}`}
                        onClick={()=> {
                            setAreaText('');
-                           handlerAddComRev(comRev, areaText)
+                           handlerAddComRev(comRev, areaText);
+                           setWrite(false);
                        }}/> :
                 <input type="button" className="shopInteractiveElement" value={`Написать ${text}`}
                        onClick={()=> handlerWriteButton()}/>
             }
             {
-                write ? <><textarea className="addComRevArea" placeholder={`Напишите ${text} ...`}
+                write ? <><textarea autoFocus={true} className="addComRevArea" placeholder={`Напишите ${text} ...`}
                 value={areaText} onChange={(e)=> handlerTextArea(e)}></textarea>
                     <img alt={'#'} src={imageCamera}/></> : <></>
             }

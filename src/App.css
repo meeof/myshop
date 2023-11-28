@@ -1,17 +1,13 @@
 * {
     font-family: sans-serif !important;
 }
-.contentContainer {
+.contentContainer, .contentProductContainer {
     width: 100%;
     height: 100%;
-    padding: 5px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.contentContainer > .cardPlace {
-    padding: 0;
 }
 .bottomButtonContainer {
     width: 100%;
@@ -99,6 +95,7 @@ input[type="button"] {
     border: solid rgba(0, 0, 225, 0.5) 3px;
     border-radius: 7px;
     background-color: transparent;
+    margin-bottom: 15px;
 }
 .headButton {
     border: none;
@@ -141,7 +138,12 @@ input[type="button"] {
     .headButtons, .cardPlace {
         width: 100%;
         box-sizing: border-box;
-        margin-bottom: 15px;
+    }
+    .contentContainer {
+        padding-bottom: 40px;
+    }
+    .contentProductContainer {
+        padding-bottom: 82px;
     }
 }
 @media (min-width: 430px) {

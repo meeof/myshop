@@ -126,11 +126,14 @@
     resize: none;
     width: 100%;
 }
+.formContainer {
+    padding: 5px;
+}
 .formContainer input, .formContainer textarea {
     box-sizing: border-box;
 }
 .formContainer > * {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 .closeButton {
     position: absolute;

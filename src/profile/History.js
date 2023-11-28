@@ -41,11 +41,9 @@ export default function History({activeButton, handlerActiveMenu, userBase, good
     return <>
         <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} logged={logged}>
             <HeadHistory viewHistoryPage={viewHistoryPage} handlerHeadHistory={handlerHeadHistory}/>
-            <div className={'contentContainer'}>
                 <div className={'cardPlace'}>
                     {outPage}
                 </div>
-            </div>
             {}
         </MenuContainer>
     </>

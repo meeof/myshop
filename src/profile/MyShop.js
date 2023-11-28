@@ -34,18 +34,20 @@ export default function MyShop({handlerActiveMenu, activeButton, sells, goods, l
         {!logged ? <></> : <MenuContainer activeButton={activeButton} handlerActiveMenu={handlerActiveMenu} logged={logged}>
             <ProfileCard name={userBase[logged].shopName} description={userBase[logged].shopDescription}
                          image={userBase[logged].profileImage} isShop={true}/>
-            <div className={'cardPlace'}>
-                {cards}
-            </div>
-            <div className={'myShopBottom'}>
-                <input type={"button"} className={'shopInteractiveElement'} value={'Товары'} onClick={() => {
-                    handlerOutAddSellOrAddGood(false);
-                    navigate('../мyShopAdd', { replace: false });
-                }}/>
-                <input type={"button"} className={'shopInteractiveElement'} value={'Продажи'} onClick={() => {
-                    handlerOutAddSellOrAddGood(true);
-                    navigate('../мyShopAdd', { replace: false });
-                }}/>
+            <div className={'contentContainer'}>
+                <div className={'cardPlace'}>
+                    {cards}
+                </div>
+                <div className={'myShopBottom'}>
+                    <input type={"button"} className={'shopInteractiveElement'} value={'Товары'} onClick={() => {
+                        handlerOutAddSellOrAddGood(false);
+                        navigate('../мyShopAdd', { replace: false });
+                    }}/>
+                    <input type={"button"} className={'shopInteractiveElement'} value={'Продажи'} onClick={() => {
+                        handlerOutAddSellOrAddGood(true);
+                        navigate('../мyShopAdd', { replace: false });
+                    }}/>
+                </div>
             </div>
         </MenuContainer>}
     </>
